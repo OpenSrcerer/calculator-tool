@@ -11,35 +11,45 @@ import static cs105Project.userInterface.PanelComponents.setBackgrounds;
 public final class ExactCubes {
 
     public static void setComponents(final Container pane) {
-        JPanel cards = new JPanel(new CardLayout());
-        JPanel border = new JPanel(new BorderLayout());
-        JPanel grid = new JPanel(new GridLayout());
-        JPanel textFieldPane = new JPanel(); //use FlowLayout
-        JPanel card1 = new JPanel();
+        // Init all the JPanels necessary for this program.
+        JPanel inputHolder = new JPanel(); // Using FlowLayout
+        JPanel buttonLayout = new JPanel();
+        JPanel buttonHolder = new JPanel(new CardLayout());
+        JPanel interactionHolder = new JPanel(new BorderLayout());
+        JPanel scrollHolder = new JPanel(new GridLayout());
 
-        setBackgrounds(cards, border, grid, textFieldPane, card1);
+        setBackgrounds(buttonHolder, interactionHolder, scrollHolder, inputHolder, buttonLayout);
 
-        //Put the JComboBox in a JPanel to get a nicer look.
         JTextArea outputField = PanelComponents.getJTextArea(15,30);
-        JTextField inputField = PanelComponents.getJTextField("500", 20);
+        JTextField inputField = PanelComponents.getJTextField("0", 10);
+        JTextField inputField2 = PanelComponents.getJTextField("500", 10);
         outputField.setPreferredSize(new Dimension(200, 200));
         outputField.setEditable(false);
-        textFieldPane.add(inputField);
 
-        //Create the "cards".
-        card1.add(PanelComponents.getButton("Run", ButtonType.EXACTCUBES, outputField, inputField));
-        card1.add(PanelComponents.getButton("Back", ButtonType.BACK));
+        // Add components to respective fields
+        inputHolder.add(inputField);
+        inputHolder.add(inputField2);
+        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.EXACTCUBES, outputField, inputField));
+        buttonLayout.add(PanelComponents.getButton("Back", ButtonType.BACK));
+        buttonHolder.add(buttonLayout);
+        interactionHolder.add(inputHolder, BorderLayout.PAGE_START);
+        interactionHolder.add(buttonHolder, BorderLayout.CENTER);
 
-        //Create the panel that contains the "cards".
-        cards.add(card1);
-
-        border.add(textFieldPane, BorderLayout.PAGE_START);
-        border.add(cards, BorderLayout.CENTER);
-        JScrollPane scroll = new JScrollPane(outputField);
+        // Create a scroll pane as holder for the output
+        JScrollPane scroll = new JScrollPane(
+                outputField,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+        );
         scroll.setBackground(discordGray);
-        grid.add(scroll);
+        scrollHolder.add(scroll);
 
-        pane.add(new JSplitPane(JSplitPane.VERTICAL_SPLIT,
-                        border, grid), BorderLayout.CENTER);
+        pane.add(
+                new JSplitPane(
+                        JSplitPane.VERTICAL_SPLIT,
+                        interactionHolder, scrollHolder
+                ),
+                BorderLayout.CENTER
+        );
     }
 }

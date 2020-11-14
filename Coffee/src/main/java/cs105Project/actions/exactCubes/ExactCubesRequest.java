@@ -71,7 +71,8 @@ public class ExactCubesRequest implements Request {
             stdDev = Math.sqrt(variance);
         }
 
-        for (int index = 0; index < exactCubes.size(); ++index) {
+        int index;
+        for (index = 0; index < exactCubes.size(); ++index) {
             builder.append(exactCubes.get(index)).append(" is the cube of ").append(correspondingRoots.get(index)).append(".\n");
         }
         builder.append("Number of cubes found: ").append(exactCubes.size()).append("\n");
@@ -80,6 +81,8 @@ public class ExactCubesRequest implements Request {
         builder.append("Variance: ").append(variance).append("\n");
         builder.append("Population Standard Deviation: ").append(stdDev).append("\n");
 
+        // set field rows to fit in result exactly
+        outputField.setRows(index + 5);
         outputField.setText(builder.toString());
         outputField.setCaretPosition(outputField.getDocument().getLength() - 1);
     }

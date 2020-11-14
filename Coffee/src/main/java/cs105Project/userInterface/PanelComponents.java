@@ -9,22 +9,26 @@ import cs105Project.userInterface.panels.Selection;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 public final class PanelComponents {
 
     // Stylizing
     public static final Color
+            discordLightGray = new Color(185, 187, 190),
+            discordLessGray = new Color(71, 71, 71),
             discordGray = new Color(54, 57, 63),
-            discordGrayer = new Color(47, 49, 54),
-            discordLightGray = new Color(185, 187, 190);
+            discordGrayer = new Color(47, 49, 54);
 
     // Fonts
-    public static final Font actionFont = new Font("Arial", Font.BOLD, 15);
-    public static final Font outputFont = new Font("Arial", Font.ITALIC, 13);
+    public static final Font titleFont = new Font("Century Gothic", Font.BOLD, 20);
+    private static final Font actionFont = new Font("Arial", Font.BOLD, 15);
+    private static final Font outputFont = new Font("Arial", Font.ITALIC, 13);
 
     public static JButton getButton(String buttonName, ButtonType type) {
         JButton button = new JButton();
         setButtonPalette(buttonName, button);
+        setMouseListener(button);
         button.addActionListener(getListener(type));
         return button;
     }
@@ -32,6 +36,7 @@ public final class PanelComponents {
     public static JButton getButton(String buttonName, ButtonType type, JTextArea outputField, JTextField inputField) {
         JButton button = new JButton();
         setButtonPalette(buttonName, button);
+        setMouseListener(button);
         button.addActionListener(getListener(type, outputField, inputField));
         return button;
     }
@@ -74,9 +79,24 @@ public final class PanelComponents {
         return field;
     }
 
+    public static JLabel getJLabel(String name) {
+        JLabel label = new JLabel(name);
+        label.setFont(titleFont);
+        label.setForeground(discordLightGray);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        return label;
+    }
+
+    public static JPanel getBorderedButton(String buttonName, ButtonType type) {
+        JPanel panel = new JPanel(new GridLayout(1, 1));
+        panel.add(getButton(buttonName, type));
+        panel.setBorder(BorderFactory.createLineBorder(discordLessGray, 1));
+        return panel;
+    }
+
     public static void setBackgrounds(JPanel... panels) {
         for (JPanel panel : panels) {
-            panel.setBackground(discordGray);
+            panel.setBackground(discordGrayer);
         }
     }
 
@@ -154,5 +174,17 @@ public final class PanelComponents {
         // shut up compiler
         // will never happen
         return null;
+    }
+
+    public static void setMouseListener(JButton button) {
+        button.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(discordLessGray);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(discordGray);
+            }
+        });
     }
 }
