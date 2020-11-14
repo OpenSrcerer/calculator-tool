@@ -1,9 +1,13 @@
 package cs105Project.userInterface;
 
+import com.sun.tools.javac.Main;
+import cs105Project.actions.Request;
+import cs105Project.actions.RequestManager;
 import cs105Project.userInterface.panels.ButtonType;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public abstract class PanelComponents {
 
@@ -39,5 +43,39 @@ public abstract class PanelComponents {
         JPanel panel = new JPanel();
         panel.setBackground(discordGrayer);
         return panel;
+    }
+
+    private static ActionListener getListener(ButtonType type) {
+
+        Request request = null;
+
+        /*if (type == ButtonType.HELP) {
+
+        } else if (type == ButtonType.CREDITS) {
+
+        } else*/ if (type == ButtonType.EXACTCUBES) {
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().repaint();
+            };
+        } /*else if (type == ButtonType.FACTORIAL) {
+
+        } else if (type == ButtonType.RANDOMINTS) {
+
+        } else if (type == ButtonType.GUESSING) {
+
+        } else if (type == ButtonType.PALINDROME) {
+
+        } else if (type == ButtonType.TRIPLES) {
+
+        }*/ else if (type == ButtonType.EXIT) {
+            return e -> {
+                MainWindow.disposeJFrame();
+                RequestManager.killExecutor();
+            };
+        }
+        // shut up compiler
+        // will never happen
+        return null;
     }
 }

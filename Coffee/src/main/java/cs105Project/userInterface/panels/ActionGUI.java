@@ -1,7 +1,5 @@
 package cs105Project.userInterface.panels;
 
-import cs105Project.userInterface.MainWindow;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,13 +7,11 @@ import static cs105Project.userInterface.PanelComponents.*;
 
 public abstract class ActionGUI {
 
-    private static final Container actionContentPane = MainWindow.getWindowPane();
-
     // Layouts
     private static final FlowLayout topLayout = new FlowLayout(FlowLayout.LEADING);
     private static final GridLayout actionLayout = new GridLayout(3,3);
 
-    private static void setActionGuiComponents(final Container pane) {
+    public static void setActionGuiComponents(final Container pane) {
         final JPanel topPanel = new JPanel();
         final JPanel actionPanel = new JPanel();
         topPanel.setLayout(topLayout);
