@@ -1,11 +1,11 @@
 package cs105Project.userInterface;
 
-import cs105Project.userInterface.panels.ActionGUI;
+import cs105Project.userInterface.panels.Selection;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainWindow extends JFrame {
+public final class MainWindow extends JFrame {
 
     private static final MainWindow window = new MainWindow();
 
@@ -24,7 +24,7 @@ public class MainWindow extends JFrame {
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Set up the content pane.
-        ActionGUI.setActionGuiComponents(window.getContentPane());
+        Selection.setComponents(window.getContentPane());
         // Pack the window so that the components
         // get their preferred size assigned.
         window.pack();
@@ -34,6 +34,14 @@ public class MainWindow extends JFrame {
 
     public static Container getWindowPane() {
         return window.getContentPane();
+    }
+
+    public static void packJFrame() {
+        window.pack();
+    }
+
+    public static void repaintJFrame() {
+        window.repaint();
     }
 
     public static void disposeJFrame() {
