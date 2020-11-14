@@ -1,7 +1,9 @@
 package cs105Project.actions.exactCubes;
 
 import cs105Project.actions.Request;
+import cs105Project.managers.RequestManager;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -15,19 +17,34 @@ import java.util.ArrayList;
  */
 
 public class ExactCubesRequest implements Request {
-    CandidateRoot candidate = CandidateRoot.getInstance();
-    ArrayList<Integer> exactCubes = new ArrayList<>();
-    // ArrayList<Integer> correspondingRoots = new ArrayList<>();
+    private final CandidateRoot candidate = CandidateRoot.getInstance();
+    private final ArrayList<Integer> exactCubes = new ArrayList<>();
+    private final ArrayList<Integer> correspondingRoots = new ArrayList<>();
+    private final StringBuilder builder = new StringBuilder();
 
     double sum = 0;
     double mean;
     double variance;
     double stdDev;
 
-    final int limit;
+    // Nullable values
+    int limit;
+    private JTextArea outputField;
 
-    public ExactCubesRequest(int limit) {
-        this.limit = limit;
+    public ExactCubesRequest(JTextArea outputField, String limit) {
+        try {
+            this.limit = Integer.parseInt(limit);
+        } catch (NumberFormatException ex) {
+            outputField.setText("Invalid input!");
+            return;
+        }
+        this.outputField = outputField;
+
+        try {
+            RequestManager.queueRequest(this);
+        } catch (InterruptedException interruptedException) {
+            outputField.setText("Whoops, seems like you broke the program. \nPlease try again.");
+        }
     }
 
     @Override
@@ -37,9 +54,8 @@ public class ExactCubesRequest implements Request {
 
             if (candidate.isExactRoot()) {
                 exactCubes.add(numberToTest);
-                //correspondingRoots.add(candidate.getRoundedRoot());
+                correspondingRoots.add(candidate.getRoundedRoot());
                 sum = sum + numberToTest;
-                System.out.println((numberToTest + " is the cube of " + candidate.getRoundedRoot() + "."));
             }
         }
 
@@ -55,13 +71,16 @@ public class ExactCubesRequest implements Request {
             stdDev = Math.sqrt(variance);
         }
 
-        /*for (int index = 0; index < exactCubes.size(); ++index) {
-            System.out.println(exactCubes.get(index) + " is the cube of " + correspondingRoots.get(index) + ".");
-        }*/
-        System.out.println("Number of cubes found: " + exactCubes.size());
-        System.out.println("Sum: " + sum);
-        System.out.println("Mean: " + mean);
-        System.out.println("Variance: " + variance);
-        System.out.println("Population Standard Deviation: " + stdDev);
+        for (int index = 0; index < exactCubes.size(); ++index) {
+            builder.append(exactCubes.get(index)).append(" is the cube of ").append(correspondingRoots.get(index)).append(".\n");
+        }
+        builder.append("Number of cubes found: ").append(exactCubes.size()).append("\n");
+        builder.append("Sum: ").append(sum).append("\n");
+        builder.append("Mean: ").append(mean).append("\n");
+        builder.append("Variance: ").append(variance).append("\n");
+        builder.append("Population Standard Deviation: ").append(stdDev).append("\n");
+
+        outputField.setText(builder.toString());
+        outputField.setCaretPosition(outputField.getDocument().getLength() - 1);
     }
 }
