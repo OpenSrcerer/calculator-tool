@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
 
-    private static MainWindow window;
+    private static MainWindow window = new MainWindow();
     // Stylizing
     private static final Color
             discordGray = new Color(54, 57, 63),
@@ -31,7 +31,7 @@ public class MainWindow extends JFrame {
         GUESSING, PALINDROME, TRIPLES
     }
 
-    public MainWindow() {
+    private MainWindow() {
         super("Multitool");
         setResizable(false);
     }
@@ -81,7 +81,7 @@ public class MainWindow extends JFrame {
      */
     public static void createAndShowGUI() {
         // Create and set up the window.
-        window = new MainWindow();
+        window = getWindow();
         window.setSize(500,500);
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,6 +102,7 @@ public class MainWindow extends JFrame {
         button.setBackground(discordGray);
         button.setForeground(discordLightGray);
         button.setFont(actionFont);
+        button.addActionListener(getListener(type));
         return button;
     }
 
@@ -118,17 +119,24 @@ public class MainWindow extends JFrame {
         return panel;
     }
 
+    private static MainWindow getWindow() {
+        return window;
+    }
+
     private static ActionListener getListener(ButtonType type) {
 
         Request request = null;
 
-        if (type == ButtonType.HELP) {
-            request = new ExactCubesRequest(500);
+        /*if (type == ButtonType.HELP) {
+
         } else if (type == ButtonType.CREDITS) {
 
-        } else if (type == ButtonType.EXACTCUBES) {
-
-        } else if (type == ButtonType.FACTORIAL) {
+        } else*/ if (type == ButtonType.EXACTCUBES) {
+            return e -> {
+                window.getContentPane().removeAll();
+                window.repaint();
+            };
+        } /*else if (type == ButtonType.FACTORIAL) {
 
         } else if (type == ButtonType.RANDOMINTS) {
 
@@ -138,17 +146,14 @@ public class MainWindow extends JFrame {
 
         } else if (type == ButtonType.TRIPLES) {
 
-        } else if (type == ButtonType.EXIT) {
-            return e -> window.dispose();
+        }*/ else if (type == ButtonType.EXIT) {
+            return e -> {
+                window.dispose();
+                RequestManager.killExecutor();
+            };
         }
-
-        Request finalRequest = request;
-        return e -> {
-            try {
-                RequestManager.queueRequest(finalRequest);
-            } catch (InterruptedException interruptedException) {
-                interruptedException.printStackTrace();
-            }
-        };
+        // shut up compiler
+        // will never happen
+        return null;
     }
 }

@@ -45,4 +45,8 @@ public abstract class RequestManager {
     public static void queueRequest(Request request) throws InterruptedException {
         requests.put(request);
     }
+
+    public static void killExecutor() {
+        executor.shutdown();
+    }
 }
