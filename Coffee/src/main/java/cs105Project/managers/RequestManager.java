@@ -1,5 +1,6 @@
-package cs105Project.actions;
+package cs105Project.managers;
 
+import cs105Project.actions.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public abstract class RequestManager {
+public final class RequestManager {
 
     private static final int nThreads = 2;
     private static final Logger lgr = LoggerFactory.getLogger(RequestManager.class);
@@ -47,6 +48,6 @@ public abstract class RequestManager {
     }
 
     public static void killExecutor() {
-        executor.shutdown();
+        executor.shutdownNow();
     }
 }
