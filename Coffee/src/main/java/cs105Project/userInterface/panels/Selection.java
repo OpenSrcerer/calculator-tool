@@ -5,19 +5,10 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
-public abstract class ActionGUI {
+public final class Selection {
 
-    // Layouts
-    private static final FlowLayout topLayout = new FlowLayout(FlowLayout.LEADING);
-    private static final GridLayout actionLayout = new GridLayout(3,3);
-
-    public static void setActionGuiComponents(final Container pane) {
-        final JPanel topPanel = new JPanel();
-        final JPanel actionPanel = new JPanel();
-        topPanel.setLayout(topLayout);
-        actionPanel.setLayout(actionLayout);
-
-        topPanel.setBackground(discordGrayer);
+    public static void setComponents(final Container pane) {
+        final JPanel actionPanel = new JPanel(new GridLayout(3,3));
         actionPanel.setBackground(discordGrayer);
 
         {
@@ -32,9 +23,6 @@ public abstract class ActionGUI {
             );
         }
 
-        topPanel.add(getButton("Help", ButtonType.HELP));
-        topPanel.add(getButton("Credits", ButtonType.CREDITS));
-
         actionPanel.add(getButton("Exact <br>Cubes", ButtonType.EXACTCUBES));
         actionPanel.add(getButton("Factorial of <br>the Average", ButtonType.FACTORIAL));
         actionPanel.add(getButton("Stats of Random <br>Integers", ButtonType.RANDOMINTS));
@@ -44,7 +32,7 @@ public abstract class ActionGUI {
         actionPanel.add(getEmptyJPanel());
         actionPanel.add(getButton("Exit", ButtonType.EXIT));
 
-        pane.add(topPanel, BorderLayout.NORTH);
+        pane.add(TopPanel.getTopPanel(), BorderLayout.NORTH);
         pane.add(getJSeparator(), BorderLayout.CENTER);
         pane.add(actionPanel, BorderLayout.SOUTH);
     }
