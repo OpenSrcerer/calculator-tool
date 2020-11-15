@@ -5,7 +5,7 @@ package cs105Project.actions.exactCubes;
  * more clear and concise.
  */
 public class CandidateRoot {
-    private static CandidateRoot instance = new CandidateRoot();
+    private static final CandidateRoot instance = new CandidateRoot();
     // Precision of when we consider a root an integer.
     private static final double ROOT_PRECISION = 1.0E-10;
     // Index of the nth root (in this case 3)
