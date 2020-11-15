@@ -11,19 +11,19 @@ public final class ExactCubes {
 
     public static void setComponents(final Container pane) {
         // Init all the JPanels necessary for this program.
-        JPanel titleHolder = new JPanel();
-        JPanel barHolder = new JPanel();
+        final JPanel titleHolder = new JPanel();
+        final JPanel barHolder = new JPanel();
         titleHolder.setLayout(new BoxLayout(titleHolder, BoxLayout.PAGE_AXIS));
-        JPanel inputHolderL = new JPanel();
+        final JPanel inputHolderL = new JPanel();
         inputHolderL.setLayout(new BoxLayout(inputHolderL, BoxLayout.PAGE_AXIS));
-        JPanel inputHolderR = new JPanel();
+        final JPanel inputHolderR = new JPanel();
         inputHolderR.setLayout(new BoxLayout(inputHolderR, BoxLayout.PAGE_AXIS));
-        JPanel inputHolderBoth = new JPanel();
-        JPanel buttonLayout = new JPanel();
-        JPanel buttonHolder = new JPanel(new CardLayout());
-        JPanel buttonAndBarHolder = new JPanel(new BorderLayout());
-        JPanel interactionHolder = new JPanel(new BorderLayout());
-        JPanel scrollHolder = new JPanel(new GridLayout());
+        final JPanel inputHolderBoth = new JPanel();
+        final JPanel buttonLayout = new JPanel();
+        final JPanel buttonHolder = new JPanel(new CardLayout());
+        final JPanel buttonAndBarHolder = new JPanel(new BorderLayout());
+        final JPanel interactionHolder = new JPanel(new BorderLayout());
+        final JPanel scrollHolder = new JPanel(new GridLayout());
 
         setBackgrounds(buttonHolder, interactionHolder, scrollHolder, buttonLayout, inputHolderL, inputHolderR, inputHolderBoth, titleHolder, barHolder);
 
@@ -31,7 +31,6 @@ public final class ExactCubes {
         JProgressBar progressBar = PanelComponents.getProgressBar();
         JTextField inputFieldL = PanelComponents.getJTextField("1", 10);
         JTextField inputFieldR = PanelComponents.getJTextField("500", 10);
-
 
         titleHolder.add(getJLabel("Exact Cubes Calculator", titleFont));
         titleHolder.add(getJLabel("Searches for exact cubes of numbers,", descriptionFont));
@@ -49,7 +48,7 @@ public final class ExactCubes {
         inputHolderBoth.add(Box.createHorizontalStrut(50));
         inputHolderBoth.add(inputHolderR);
 
-        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.EXACTCUBES, progressBar, outputField, inputFieldL, inputFieldR));
+        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.EXACTCUBES, outputField, progressBar, inputFieldL, inputFieldR));
         buttonLayout.add(PanelComponents.getButton("Back", ButtonType.BACK));
         buttonHolder.add(buttonLayout);
 
