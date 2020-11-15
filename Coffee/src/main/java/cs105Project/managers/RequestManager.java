@@ -1,8 +1,6 @@
 package cs105Project.managers;
 
 import cs105Project.actions.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -11,7 +9,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 public final class RequestManager {
 
     private static final int nThreads = 2;
-    private static final Logger lgr = LoggerFactory.getLogger(RequestManager.class);
     private static final ExecutorService executor = Executors.newFixedThreadPool(nThreads);
     private static final LinkedBlockingQueue<Request> requests = new LinkedBlockingQueue<>(5);
 
@@ -23,7 +20,7 @@ public final class RequestManager {
                 try {
                     request = requests.take();
                 } catch (InterruptedException ex) {
-                    lgr.error("Thread interrupted while waiting for request.", ex);
+                    System.out.println("Thread interrupted! Program shutdown expected.");
                 }
 
                 if (request == null) {
