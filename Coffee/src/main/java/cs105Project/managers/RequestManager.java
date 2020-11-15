@@ -8,9 +8,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public final class RequestManager {
 
-    private static final int nThreads = 2;
+    private static final int nThreads = 1;
     private static final ExecutorService executor = Executors.newFixedThreadPool(nThreads);
-    private static final LinkedBlockingQueue<Request> requests = new LinkedBlockingQueue<>(5);
+    private static final LinkedBlockingQueue<Request> requests = new LinkedBlockingQueue<>(1);
 
     static {
         Runnable runRequests = () -> {
@@ -40,8 +40,8 @@ public final class RequestManager {
      * Adds the request to the requests array of active requests.
      * @param request Request to be added.
      */
-    public static void queueRequest(Request request) throws InterruptedException {
-        requests.put(request);
+    public static void queueRequest(Request request) {
+        requests.offer(request);
     }
 
     public static void killExecutor() {

@@ -1,12 +1,14 @@
 package cs105Project.actions;
 
-import cs105Project.userInterface.MainWindow;
-
 import javax.swing.*;
 
-// Marker interface
 public interface Request extends Runnable {
 
+    /**
+     * Gives a JProgressBar a new value.
+     * @param bar Target JProgressBar
+     * @param value Value to set
+     */
     default void updateProgressBar(JProgressBar bar, int value) {
         bar.setValue(value);
     }

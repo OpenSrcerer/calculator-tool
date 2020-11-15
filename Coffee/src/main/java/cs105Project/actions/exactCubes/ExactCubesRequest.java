@@ -24,8 +24,9 @@ public class ExactCubesRequest implements Request {
     // Output UI References & Variables
     private JTextArea outputField;
     private JProgressBar progressBar;
+    private JButton button;
 
-    public ExactCubesRequest(JTextArea outputField, JProgressBar bar, String lowestBound, String highestBound) {
+    public ExactCubesRequest(JTextArea outputField, JProgressBar bar, JButton button, String lowestBound, String highestBound) {
         try {
             this.lowestBound = Integer.parseInt(lowestBound);
             this.highestBound = Integer.parseInt(highestBound);
@@ -38,16 +39,15 @@ public class ExactCubesRequest implements Request {
 
         this.outputField = outputField;
         this.progressBar = bar;
+        this.button = button;
 
-        try {
-            RequestManager.queueRequest(this);
-        } catch (InterruptedException interruptedException) {
-            outputField.setText("Oops, seems like you broke the program. \nPlease try again.");
-        }
+        RequestManager.queueRequest(this);
     }
 
     @Override
     public void run() {
+        button.setEnabled(false);
+
         final ArrayList<Integer> exactCubes = new ArrayList<>();
         final ArrayList<Integer> correspondingRoots = new ArrayList<>();
         final StringBuilder builder = new StringBuilder();
@@ -58,7 +58,7 @@ public class ExactCubesRequest implements Request {
         double stdDev;
 
         // Estimate for the progress bar
-        double expectedCubes = (int) Math.pow((highestBound - lowestBound), 1/3d);
+        double expectedCubes = Math.pow((highestBound - lowestBound), 1/3d);
 
         for (int numberToTest = lowestBound; numberToTest <= highestBound; ++numberToTest) {
             candidate.setCandidate(numberToTest);
@@ -96,11 +96,12 @@ public class ExactCubesRequest implements Request {
             builder.append("Sum: ").append(sum).append("\n");
             builder.append("Mean: ").append(mean).append("\n");
             builder.append("Variance: ").append(variance).append("\n");
-            builder.append("Population Standard Deviation: ").append(stdDev).append("\n");
+            builder.append("Standard Deviation: ").append(stdDev).append("\n");
         }
 
         // Update output field
         updateOutputArea(outputField, builder.toString(), index + 8);
         updateProgressBar(progressBar, 0);
+        button.setEnabled(true);
     }
 }

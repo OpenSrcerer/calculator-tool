@@ -51,11 +51,11 @@ public final class PanelComponents {
      * @param type Type of button.
      * @return Customized JButton.
      */
-    public static JButton getButton(String buttonName, ButtonType type, JProgressBar bar, JTextArea outputField, JTextField... fields) {
+    public static JButton getButton(String buttonName, ButtonType type, JTextArea outputField, JProgressBar bar, JTextField... fields) {
         JButton button = new JButton();
         setButtonPalette(buttonName, button);
         setMouseListener(button);
-        button.addActionListener(getListener(type, bar, outputField, fields));
+        button.addActionListener(getListener(outputField, type, bar, button, fields));
         return button;
     }
 
@@ -203,14 +203,14 @@ public final class PanelComponents {
         return null;
     }
 
-    private static ActionListener getListener(ButtonType type, JProgressBar bar, JTextArea outputField, JTextField... fields) {
+    private static ActionListener getListener(JTextArea outputField, ButtonType type, JProgressBar bar, JButton button, JTextField... fields) {
 
         /*if (type == ButtonType.HELP) {
 
         } else if (type == ButtonType.CREDITS) {
 
         } else*/ if (type == ButtonType.EXACTCUBES) {
-            return e -> new ExactCubesRequest(outputField, bar, fields[0].getText(), fields[1].getText());
+            return e -> new ExactCubesRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
         } /*else if (type == ButtonType.FACTORIAL) {
 
         } else if (type == ButtonType.RANDOMINTS) {
