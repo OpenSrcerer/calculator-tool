@@ -11,20 +11,32 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
+/**
+ * This class is used to retrieve custom stylized JComponents
+ * to match the ambiance and theme of the UI.
+ */
 public final class PanelComponents {
 
-    // Stylizing
+    // -------- Global Stylizing Elements --------
     public static final Color
             discordLightGray = new Color(185, 187, 190),
             discordLessGray = new Color(71, 71, 71),
             discordGray = new Color(54, 57, 63),
             discordGrayer = new Color(47, 49, 54);
 
-    // Fonts
     public static final Font titleFont = new Font("Century Gothic", Font.BOLD, 20);
+    public static final Font descriptionFont = new Font("Century Gothic", Font.PLAIN, 14);
     private static final Font actionFont = new Font("Arial", Font.BOLD, 15);
     private static final Font outputFont = new Font("Arial", Font.ITALIC, 13);
+    // -------------------------------------------
 
+
+    /**
+     * Retrieves a custom JButton.
+     * @param buttonName Name and initial text of button.
+     * @param type Type of button.
+     * @return Customized JButton.
+     */
     public static JButton getButton(String buttonName, ButtonType type) {
         JButton button = new JButton();
         setButtonPalette(buttonName, button);
@@ -33,11 +45,17 @@ public final class PanelComponents {
         return button;
     }
 
-    public static JButton getButton(String buttonName, ButtonType type, JTextArea outputField, JTextField inputField) {
+    /**
+     * Retrieves a custom JButton.
+     * @param buttonName Name and initial text of button.
+     * @param type Type of button.
+     * @return Customized JButton.
+     */
+    public static JButton getButton(String buttonName, ButtonType type, JProgressBar bar, JTextArea outputField, JTextField... fields) {
         JButton button = new JButton();
         setButtonPalette(buttonName, button);
         setMouseListener(button);
-        button.addActionListener(getListener(type, outputField, inputField));
+        button.addActionListener(getListener(type, bar, outputField, fields));
         return button;
     }
 
@@ -68,20 +86,25 @@ public final class PanelComponents {
         area.setFont(outputFont);
         area.setBackground(discordGrayer);
         area.setForeground(discordLightGray);
+        area.setPreferredSize(new Dimension(200, 200));
+        area.setEditable(false);
         return area;
     }
 
     public static JTextField getJTextField(String defaultText, int cols) {
         JTextField field = new JTextField(defaultText, cols);
         field.setFont(outputFont);
+        field.setHorizontalAlignment(JTextField.CENTER);
         field.setBackground(discordGrayer);
         field.setForeground(discordLightGray);
+        field.setCaretColor(discordLightGray);
+        setMouseListener(field);
         return field;
     }
 
-    public static JLabel getJLabel(String name) {
+    public static JLabel getJLabel(String name, Font font) {
         JLabel label = new JLabel(name);
-        label.setFont(titleFont);
+        label.setFont(font);
         label.setForeground(discordLightGray);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         return label;
@@ -94,10 +117,48 @@ public final class PanelComponents {
         return panel;
     }
 
+    public static JProgressBar getProgressBar() {
+        JProgressBar bar = new JProgressBar();
+        bar.setPreferredSize(new Dimension(250, 25));
+        bar.setMinimum(0);
+        bar.setMaximum(100);
+        bar.setOpaque(true);
+        bar.setBorderPainted(false);
+        bar.setBackground(discordGray);
+        bar.setForeground(Color.RED);
+        return bar;
+    }
+
     public static void setBackgrounds(JPanel... panels) {
         for (JPanel panel : panels) {
             panel.setBackground(discordGrayer);
         }
+    }
+
+    public static void setMouseListener(JButton button) {
+        button.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MainWindow.getWindowPane().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                button.setBackground(discordLessGray);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                button.setBackground(discordGray);
+            }
+        });
+    }
+
+    public static void setMouseListener(JTextField field) {
+        field.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MainWindow.getWindowPane().setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+            }
+        });
     }
 
     private static ActionListener getListener(ButtonType type) {
@@ -108,6 +169,7 @@ public final class PanelComponents {
         } else*/ if (type == ButtonType.EXACTCUBES) {
             return e -> {
                 MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
                 ExactCubes.setComponents(MainWindow.getWindowPane());
                 MainWindow.packJFrame();
                 MainWindow.repaintJFrame();
@@ -125,6 +187,7 @@ public final class PanelComponents {
         }*/ else if (type == ButtonType.BACK) {
             return e -> {
                 MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
                 Selection.setComponents(MainWindow.getWindowPane());
                 MainWindow.packJFrame();
                 MainWindow.repaintJFrame();
@@ -140,14 +203,14 @@ public final class PanelComponents {
         return null;
     }
 
-    private static ActionListener getListener(ButtonType type, JTextArea outputField, JTextField inputField) {
+    private static ActionListener getListener(ButtonType type, JProgressBar bar, JTextArea outputField, JTextField... fields) {
 
         /*if (type == ButtonType.HELP) {
 
         } else if (type == ButtonType.CREDITS) {
 
         } else*/ if (type == ButtonType.EXACTCUBES) {
-            return e -> new ExactCubesRequest(outputField, inputField.getText());
+            return e -> new ExactCubesRequest(outputField, bar, fields[0].getText(), fields[1].getText());
         } /*else if (type == ButtonType.FACTORIAL) {
 
         } else if (type == ButtonType.RANDOMINTS) {
@@ -158,33 +221,9 @@ public final class PanelComponents {
 
         } else if (type == ButtonType.TRIPLES) {
 
-        }*/ else if (type == ButtonType.BACK) {
-            return e -> {
-                MainWindow.getWindowPane().removeAll();
-                Selection.setComponents(MainWindow.getWindowPane());
-                MainWindow.packJFrame();
-                MainWindow.getWindowPane().repaint();
-            };
-        } else if (type == ButtonType.EXIT) {
-            return e -> {
-                MainWindow.disposeJFrame();
-                RequestManager.killExecutor();
-            };
-        }
+        }*/
         // shut up compiler
         // will never happen
         return null;
-    }
-
-    public static void setMouseListener(JButton button) {
-        button.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setBackground(discordLessGray);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setBackground(discordGray);
-            }
-        });
     }
 }
