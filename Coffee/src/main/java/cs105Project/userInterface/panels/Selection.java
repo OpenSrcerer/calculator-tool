@@ -29,8 +29,8 @@ public final class Selection {
         }
 
         textPanel.add(Box.createVerticalStrut(50));
-        textPanel.add(getJLabel("Multitool for different purpose"));
-        textPanel.add(getJLabel("calculations and fun stuff!"));
+        textPanel.add(getJLabel("Multitool for different purpose", titleFont));
+        textPanel.add(getJLabel("calculations and fun stuff!", titleFont));
         textPanel.add(Box.createVerticalStrut(50));
         cardPanel.add(textPanel);
         titlePanel.add(getJSeparator(), BorderLayout.NORTH);
