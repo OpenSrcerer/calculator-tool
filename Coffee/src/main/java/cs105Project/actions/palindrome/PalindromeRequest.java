@@ -1,4 +1,10 @@
 package cs105Project.actions.palindrome;
 
-public class PalindromeRequest {
+import cs105Project.actions.Request;
+
+public class PalindromeRequest implements Request {
+    @Override
+    public void run() {
+
+    }
 }

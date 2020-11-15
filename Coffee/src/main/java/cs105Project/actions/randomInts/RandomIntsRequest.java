@@ -1,4 +1,10 @@
 package cs105Project.actions.randomInts;
 
-public class RandomIntsRequest {
+import cs105Project.actions.Request;
+
+public class RandomIntsRequest implements Request {
+    @Override
+    public void run() {
+
+    }
 }

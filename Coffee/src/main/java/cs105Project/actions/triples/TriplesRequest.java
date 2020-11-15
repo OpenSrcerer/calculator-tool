@@ -1,4 +1,10 @@
 package cs105Project.actions.triples;
 
-public class TriplesRequest {
+import cs105Project.actions.Request;
+
+public class TriplesRequest implements Request {
+    @Override
+    public void run() {
+
+    }
 }
