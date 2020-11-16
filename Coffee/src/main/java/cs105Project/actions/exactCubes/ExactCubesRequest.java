@@ -46,7 +46,7 @@ public class ExactCubesRequest implements Request {
 
     @Override
     public void run() {
-        button.setEnabled(false);
+        toggleRunButton(button);
 
         final ArrayList<Integer> exactCubes = new ArrayList<>();
         final ArrayList<Integer> correspondingRoots = new ArrayList<>();
@@ -102,6 +102,6 @@ public class ExactCubesRequest implements Request {
         // Update output field
         updateOutputArea(outputField, builder.toString(), index + 8);
         updateProgressBar(progressBar, 0);
-        button.setEnabled(true);
+        toggleRunButton(button);
     }
 }
