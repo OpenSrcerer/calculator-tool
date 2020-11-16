@@ -27,21 +27,21 @@ public final class ExactCubes {
 
         setBackgrounds(buttonHolder, interactionHolder, scrollHolder, buttonLayout, inputHolderL, inputHolderR, inputHolderBoth, titleHolder, barHolder);
 
-        JTextArea outputField = PanelComponents.getJTextArea(15,30);
+        JTextArea outputField = PanelComponents.getTextArea(15,30);
         JProgressBar progressBar = PanelComponents.getProgressBar();
-        JTextField inputFieldL = PanelComponents.getJTextField("1", 10);
-        JTextField inputFieldR = PanelComponents.getJTextField("500", 10);
+        JTextField inputFieldL = PanelComponents.getTextField("1", 10);
+        JTextField inputFieldR = PanelComponents.getTextField("500", 10);
 
-        titleHolder.add(getJLabel("Exact Cubes Calculator", titleFont));
-        titleHolder.add(getJLabel("Searches for exact cubes of numbers,", descriptionFont));
-        titleHolder.add(getJLabel("in the range provided below:", descriptionFont));
+        titleHolder.add(getLabel("Exact Cubes Calculator", titleFont));
+        titleHolder.add(getLabel("Searches for exact cubes of numbers,", descriptionFont));
+        titleHolder.add(getLabel("in the range provided below:", descriptionFont));
         titleHolder.add(Box.createVerticalStrut(5));
-        titleHolder.add(getJSeparator());
+        titleHolder.add(getSeparator());
 
-        inputHolderL.add(getJLabel("From:", descriptionFont));
+        inputHolderL.add(getLabel("From:", descriptionFont));
         inputHolderL.add(inputFieldL);
 
-        inputHolderR.add(getJLabel("To:", descriptionFont));
+        inputHolderR.add(getLabel("To:", descriptionFont));
         inputHolderR.add(inputFieldR);
 
         inputHolderBoth.add(inputHolderL);

@@ -68,7 +68,7 @@ public final class PanelComponents {
         button.setFont(actionFont);
     }
 
-    public static JSeparator getJSeparator() {
+    public static JSeparator getSeparator() {
         JSeparator separator = new JSeparator();
         separator.setBackground(discordGrayer);
         separator.setForeground(discordLightGray);
@@ -81,7 +81,7 @@ public final class PanelComponents {
         return panel;
     }
 
-    public static JTextArea getJTextArea(int rows, int cols) {
+    public static JTextArea getTextArea(int rows, int cols) {
         JTextArea area = new JTextArea(rows, cols);
         area.setFont(outputFont);
         area.setBackground(discordGrayer);
@@ -91,7 +91,7 @@ public final class PanelComponents {
         return area;
     }
 
-    public static JTextField getJTextField(String defaultText, int cols) {
+    public static JTextField getTextField(String defaultText, int cols) {
         JTextField field = new JTextField(defaultText, cols);
         field.setFont(outputFont);
         field.setHorizontalAlignment(JTextField.CENTER);
@@ -102,7 +102,7 @@ public final class PanelComponents {
         return field;
     }
 
-    public static JLabel getJLabel(String name, Font font) {
+    public static JLabel getLabel(String name, Font font) {
         JLabel label = new JLabel(name);
         label.setFont(font);
         label.setForeground(discordLightGray);
