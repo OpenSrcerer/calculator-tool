@@ -29,15 +29,15 @@ public final class Selection {
         }
 
         textPanel.add(Box.createVerticalStrut(50));
-        textPanel.add(getJLabel("Multitool for different purpose", titleFont));
-        textPanel.add(getJLabel("calculations and fun stuff!", titleFont));
+        textPanel.add(getLabel("Multitool for different purpose", titleFont));
+        textPanel.add(getLabel("calculations and fun stuff!", titleFont));
         textPanel.add(Box.createVerticalStrut(50));
 
         cardPanel.add(textPanel);
 
-        titlePanel.add(getJSeparator(), BorderLayout.NORTH);
+        titlePanel.add(getSeparator(), BorderLayout.NORTH);
         titlePanel.add(cardPanel, BorderLayout.CENTER);
-        titlePanel.add(getJSeparator(), BorderLayout.SOUTH);
+        titlePanel.add(getSeparator(), BorderLayout.SOUTH);
 
         actionPanel.add(getBorderedButton("Exact <br>Cubes", ButtonType.EXACTCUBES));
         actionPanel.add(getBorderedButton("Factorial of <br>the Average", ButtonType.FACTORIAL));
