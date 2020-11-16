@@ -4,13 +4,17 @@ import javax.swing.*;
 
 public interface Request extends Runnable {
 
+    default void toggleRunButton(JButton button) {
+        SwingUtilities.invokeLater(() -> button.setEnabled(!button.isEnabled()));
+    }
+
     /**
      * Gives a JProgressBar a new value.
      * @param bar Target JProgressBar
      * @param value Value to set
      */
     default void updateProgressBar(JProgressBar bar, int value) {
-        bar.setValue(value);
+        SwingUtilities.invokeLater(() -> bar.setValue(value));
     }
 
     /**
@@ -22,8 +26,10 @@ public interface Request extends Runnable {
      */
     default void updateOutputArea(JTextArea outputArea, String areaText, int areaRows) {
         // set field rows to fit in result exactly
-        outputArea.setRows(areaRows);
-        outputArea.setText(areaText);
-        outputArea.setCaretPosition(outputArea.getDocument().getLength() - 1);
+        SwingUtilities.invokeLater(() -> {
+            outputArea.setRows(areaRows);
+            outputArea.setText(areaText);
+            outputArea.setCaretPosition(outputArea.getDocument().getLength() - 1);
+        });
     }
 }
