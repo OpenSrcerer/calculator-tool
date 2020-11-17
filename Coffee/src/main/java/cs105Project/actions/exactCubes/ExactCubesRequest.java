@@ -1,10 +1,12 @@
 package cs105Project.actions.exactCubes;
 
+import cs105Project.actions.Functions;
 import cs105Project.actions.Request;
 import cs105Project.managers.RequestManager;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 /**
  * Menu option 1: Exact cubes. Calculate and display the list of all integer numbers between the lowest bound
@@ -47,7 +49,6 @@ public class ExactCubesRequest implements Request {
     @Override
     public void run() {
         toggleRunButton(button);
-
         final ArrayList<Integer> exactCubes = new ArrayList<>();
         final ArrayList<Integer> correspondingRoots = new ArrayList<>();
         final StringBuilder builder = new StringBuilder();
@@ -71,17 +72,9 @@ public class ExactCubesRequest implements Request {
             }
         }
 
-        {
-            mean = sum / exactCubes.size();
-            double sqrDiff = 0;
-
-            for (Integer exactCube : exactCubes) {
-                sqrDiff = sqrDiff + Math.pow(exactCube - mean, 2);
-            }
-
-            variance = sqrDiff / exactCubes.size();
-            stdDev = Math.sqrt(variance);
-        }
+        mean = sum / exactCubes.size();
+        variance = Functions.getVariance(exactCubes, mean);
+        stdDev = Math.sqrt(variance);
 
         int index = 0;
         if (sum == 0) {
