@@ -27,7 +27,7 @@ public final class ExactCubes {
 
         setBackgrounds(buttonHolder, interactionHolder, scrollHolder, buttonLayout, inputHolderL, inputHolderR, inputHolderBoth, titleHolder, barHolder);
 
-        JTextArea outputField = PanelComponents.getTextArea(15,30);
+        JTextArea outputArea = PanelComponents.getTextArea(15,30);
         JProgressBar progressBar = PanelComponents.getProgressBar();
         JTextField inputFieldL = PanelComponents.getTextField("1", 10);
         JTextField inputFieldR = PanelComponents.getTextField("500", 10);
@@ -48,7 +48,7 @@ public final class ExactCubes {
         inputHolderBoth.add(Box.createHorizontalStrut(50));
         inputHolderBoth.add(inputHolderR);
 
-        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.EXACTCUBES, outputField, progressBar, inputFieldL, inputFieldR));
+        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.EXACTCUBES, outputArea, progressBar, inputFieldL, inputFieldR));
         buttonLayout.add(PanelComponents.getButton("Back", ButtonType.BACK));
         buttonHolder.add(buttonLayout);
 
@@ -63,7 +63,7 @@ public final class ExactCubes {
 
         // Create a scroll pane as holder for the output
         JScrollPane scroll = new JScrollPane(
-                outputField,
+                outputArea,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
         );
