@@ -7,16 +7,17 @@ import cs105Project.managers.RequestManager;
 import javax.swing.*;
 
 public class PalindromeRequest implements Request {
+    // What is taken as input
     private final String stringToTest;
     private final boolean isCaseSensitive;
 
     // Output UI References & Variables
-    private final JTextArea outputField;
+    private final JTextArea outputArea;
     private final JButton button;
 
     public PalindromeRequest(JTextArea outputField, JButton button, String inputString, boolean isCaseSensitive) {
         this.stringToTest = inputString;
-        this.outputField = outputField;
+        this.outputArea = outputField;
         this.button = button;
         this.isCaseSensitive = isCaseSensitive;
 
@@ -32,9 +33,9 @@ public class PalindromeRequest implements Request {
             tempString = tempString.toLowerCase();
 
         if (Functions.isPalindrome(tempString, 0)) {
-            updateOutputArea(outputField, outputField.getText() + "\n" + stringToTest + " IS a palindrome.", outputField.getRows() + 1);
+            updateOutputArea(outputArea, outputArea.getText() + stringToTest + " IS a palindrome." + "\n", outputArea.getRows() + 1);
         } else {
-            updateOutputArea(outputField, outputField.getText() + "\n" + stringToTest + " IS NOT a palindrome.", outputField.getRows() + 1);
+            updateOutputArea(outputArea, outputArea.getText() + stringToTest + " IS NOT a palindrome." + "\n", outputArea.getRows() + 1);
         }
 
         toggleRunButton(button);

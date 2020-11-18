@@ -14,11 +14,11 @@ public final class Palindrome {
         titleHolder.setLayout(new BoxLayout(titleHolder, BoxLayout.PAGE_AXIS));
         final JPanel inputBox = new JPanel();
         inputBox.setLayout(new BoxLayout(inputBox, BoxLayout.PAGE_AXIS));
+        final JPanel buttonHolder = new JPanel();
+        buttonHolder.setLayout(new BoxLayout(buttonHolder, BoxLayout.PAGE_AXIS));
         final JPanel inputHolder = new JPanel();
         final JPanel checkBoxHolder = new JPanel();
         final JPanel buttonLayout = new JPanel();
-        final JPanel buttonHolder = new JPanel();
-        buttonHolder.setLayout(new BoxLayout(buttonHolder, BoxLayout.PAGE_AXIS));
         final JPanel interactionHolder = new JPanel(new BorderLayout());
         final JPanel scrollHolder = new JPanel(new GridLayout());
 
