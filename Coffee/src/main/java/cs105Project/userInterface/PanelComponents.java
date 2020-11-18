@@ -2,6 +2,7 @@ package cs105Project.userInterface;
 
 import cs105Project.actions.exactCubes.ExactCubesRequest;
 import cs105Project.actions.palindrome.PalindromeRequest;
+import cs105Project.actions.randomInts.RandomIntsRequest;
 import cs105Project.managers.RequestManager;
 import cs105Project.userInterface.panels.*;
 
@@ -9,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
-
 /**
  * This class is used to retrieve custom stylized JComponents
  * to match the ambiance and theme of the UI.
@@ -249,9 +249,9 @@ public final class PanelComponents {
         } else if (type == ButtonType.FACTORIAL) {
             //return e -> new FactorialRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
         } else if (type == ButtonType.RANDOMINTS) {
-            //return e -> new GuessingRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
+            return e -> new RandomIntsRequest((JTextArea) args[0], button);
         } else if (type == ButtonType.GUESSING) {
-            //return e -> new PalindromeRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
+            //return e -> new GuessingRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
         } else if (type == ButtonType.PALINDROME) {
             return e -> new PalindromeRequest((JTextArea) args[0], button, ((JTextField) args[1]).getText(), ((JCheckBox) args[2]).isSelected());
         } else if (type == ButtonType.TRIPLES) {
