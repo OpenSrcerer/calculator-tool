@@ -1,7 +1,9 @@
 package cs105Project.actions;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * A class with functions created especially for this project
@@ -37,5 +39,9 @@ public final class Functions {
             return false;
 
         return isPalindrome(s, index + 1);
+    }
+
+    public static List<Integer> multiplyListBy(List<Integer> list, int multiplier) {
+        return list.stream().map(e -> e * multiplier).collect(Collectors.toList());
     }
 }
