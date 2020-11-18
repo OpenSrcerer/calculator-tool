@@ -1,10 +1,9 @@
 package cs105Project.userInterface;
 
 import cs105Project.actions.exactCubes.ExactCubesRequest;
+import cs105Project.actions.palindrome.PalindromeRequest;
 import cs105Project.managers.RequestManager;
-import cs105Project.userInterface.panels.ButtonType;
-import cs105Project.userInterface.panels.ExactCubes;
-import cs105Project.userInterface.panels.Selection;
+import cs105Project.userInterface.panels.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,11 +50,11 @@ public final class PanelComponents {
      * @param type Type of button.
      * @return Customized JButton.
      */
-    public static JButton getButton(String buttonName, ButtonType type, JTextArea outputField, JProgressBar bar, JTextField... fields) {
+    public static JButton getButton(String buttonName, ButtonType type, Object... arg) {
         JButton button = new JButton();
         setButtonPalette(buttonName, button);
         setMouseListener(button);
-        button.addActionListener(getListener(outputField, type, bar, button, fields));
+        button.addActionListener(getListener(type, button, arg));
         return button;
     }
 
@@ -87,6 +86,8 @@ public final class PanelComponents {
         area.setBackground(discordGrayer);
         area.setForeground(discordLightGray);
         area.setPreferredSize(new Dimension(200, 200));
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
         area.setEditable(false);
         return area;
     }
@@ -127,6 +128,14 @@ public final class PanelComponents {
         bar.setBackground(discordGray);
         bar.setForeground(Color.RED);
         return bar;
+    }
+
+    public static JCheckBox getCheckBox(String name, boolean isSelected) {
+        JCheckBox box = new JCheckBox(name, isSelected);
+        box.setBackground(discordGray);
+        box.setFont(actionFont);
+        box.setForeground(discordLightGray);
+        return box;
     }
 
     public static void setBackgrounds(JPanel... panels) {
@@ -174,17 +183,47 @@ public final class PanelComponents {
                 MainWindow.packJFrame();
                 MainWindow.repaintJFrame();
             };
-        } /*else if (type == ButtonType.FACTORIAL) {
-
+        } else if (type == ButtonType.FACTORIAL) {
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                Factorial.setComponents(MainWindow.getWindowPane());
+                MainWindow.packJFrame();
+                MainWindow.repaintJFrame();
+            };
         } else if (type == ButtonType.RANDOMINTS) {
-
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                RandomInts.setComponents(MainWindow.getWindowPane());
+                MainWindow.packJFrame();
+                MainWindow.repaintJFrame();
+            };
         } else if (type == ButtonType.GUESSING) {
-
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                Guessing.setComponents(MainWindow.getWindowPane());
+                MainWindow.packJFrame();
+                MainWindow.repaintJFrame();
+            };
         } else if (type == ButtonType.PALINDROME) {
-
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                Palindrome.setComponents(MainWindow.getWindowPane());
+                MainWindow.packJFrame();
+                MainWindow.repaintJFrame();
+            };
         } else if (type == ButtonType.TRIPLES) {
-
-        }*/ else if (type == ButtonType.BACK) {
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                Triples.setComponents(MainWindow.getWindowPane());
+                MainWindow.packJFrame();
+                MainWindow.repaintJFrame();
+            };
+        } else if (type == ButtonType.BACK) {
             return e -> {
                 MainWindow.getWindowPane().removeAll();
                 MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
@@ -203,25 +242,21 @@ public final class PanelComponents {
         return null;
     }
 
-    private static ActionListener getListener(JTextArea outputField, ButtonType type, JProgressBar bar, JButton button, JTextField... fields) {
+    private static ActionListener getListener(ButtonType type, JButton button, Object[] args) {
 
-        /*if (type == ButtonType.HELP) {
-
-        } else if (type == ButtonType.CREDITS) {
-
-        } else*/ if (type == ButtonType.EXACTCUBES) {
-            return e -> new ExactCubesRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
-        } /*else if (type == ButtonType.FACTORIAL) {
-
+        if (type == ButtonType.EXACTCUBES) {
+            return e -> new ExactCubesRequest((JTextArea) args[0], (JProgressBar) args[1], button, ((JTextField) args[2]).getText(), ((JTextField) args[3]).getText());
+        } else if (type == ButtonType.FACTORIAL) {
+            //return e -> new FactorialRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
         } else if (type == ButtonType.RANDOMINTS) {
-
+            //return e -> new GuessingRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
         } else if (type == ButtonType.GUESSING) {
-
+            //return e -> new PalindromeRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
         } else if (type == ButtonType.PALINDROME) {
-
+            return e -> new PalindromeRequest((JTextArea) args[0], button, ((JTextField) args[1]).getText(), ((JCheckBox) args[2]).isSelected());
         } else if (type == ButtonType.TRIPLES) {
-
-        }*/
+            //return e -> new TriplesRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
+        }
         // shut up compiler
         // will never happen
         return null;
