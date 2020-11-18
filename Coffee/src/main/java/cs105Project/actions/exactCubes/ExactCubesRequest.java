@@ -6,7 +6,6 @@ import cs105Project.managers.RequestManager;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 
 /**
  * Menu option 1: Exact cubes. Calculate and display the list of all integer numbers between the lowest bound
