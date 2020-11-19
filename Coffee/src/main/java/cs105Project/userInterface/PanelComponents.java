@@ -2,8 +2,10 @@ package cs105Project.userInterface;
 
 import cs105Project.actions.exactCubes.ExactCubesRequest;
 import cs105Project.actions.factorial.FactorialRequest;
+import cs105Project.actions.guessing.GuessingRequest;
 import cs105Project.actions.palindrome.PalindromeRequest;
 import cs105Project.actions.randomInts.RandomIntsRequest;
+import cs105Project.actions.triples.TriplesRequest;
 import cs105Project.managers.RequestManager;
 import cs105Project.userInterface.panels.*;
 
@@ -248,15 +250,15 @@ public final class PanelComponents {
         if (type == ButtonType.EXACTCUBES) {
             return e -> new ExactCubesRequest((JTextArea) args[0], (JProgressBar) args[1], button, ((JTextField) args[2]).getText(), ((JTextField) args[3]).getText());
         } else if (type == ButtonType.FACTORIAL) {
-            return e -> new FactorialRequest((JTextArea) args[0], button, ((JTextField[]) args[1]));
+            return e -> new FactorialRequest((JTextArea) args[0], button, (JTextField[]) args[1]);
         } else if (type == ButtonType.RANDOMINTS) {
             return e -> new RandomIntsRequest((JTextArea) args[0], button);
         } else if (type == ButtonType.GUESSING) {
-            //return e -> new GuessingRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
+            return e -> new GuessingRequest((JTextArea) args[0], button, ((JTextField) args[1]).getText());
         } else if (type == ButtonType.PALINDROME) {
             return e -> new PalindromeRequest((JTextArea) args[0], button, ((JTextField) args[1]).getText(), ((JCheckBox) args[2]).isSelected());
         } else if (type == ButtonType.TRIPLES) {
-            //return e -> new TriplesRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
+            return e -> new TriplesRequest((JTextArea) args[0], button);
         }
         // shut up compiler
         // will never happen
