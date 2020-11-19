@@ -21,6 +21,8 @@ public class FactorialRequest implements Request {
         for (int index = 0; index < 5; ++index) {
             try {
                 numbers[index] = Integer.parseInt(fields[index].getText());
+                if (numbers[index] <= 0 || numbers[index] >= 15)
+                    throw new NumberFormatException();
             } catch (NumberFormatException ex) {
                 updateOutputArea(outputArea, "How about you insert something that works?", 1);
                 return;
@@ -45,7 +47,8 @@ public class FactorialRequest implements Request {
                         + "Average: " + average + "\n"
                         + "Closest integer: " + closest + "\n"
                         + "Factorial of closest integer: " + factorial + "\n",
-                outputArea.getRows() + 5);
+                outputArea.getRows() + 5
+        );
         toggleRunButton(button);
     }
 
