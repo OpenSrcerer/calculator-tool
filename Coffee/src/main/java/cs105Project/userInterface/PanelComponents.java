@@ -1,6 +1,7 @@
 package cs105Project.userInterface;
 
 import cs105Project.actions.exactCubes.ExactCubesRequest;
+import cs105Project.actions.factorial.FactorialRequest;
 import cs105Project.actions.palindrome.PalindromeRequest;
 import cs105Project.actions.randomInts.RandomIntsRequest;
 import cs105Project.managers.RequestManager;
@@ -247,7 +248,7 @@ public final class PanelComponents {
         if (type == ButtonType.EXACTCUBES) {
             return e -> new ExactCubesRequest((JTextArea) args[0], (JProgressBar) args[1], button, ((JTextField) args[2]).getText(), ((JTextField) args[3]).getText());
         } else if (type == ButtonType.FACTORIAL) {
-            //return e -> new FactorialRequest(outputField, bar, button, fields[0].getText(), fields[1].getText());
+            return e -> new FactorialRequest((JTextArea) args[0], button, ((JTextField[]) args[1]));
         } else if (type == ButtonType.RANDOMINTS) {
             return e -> new RandomIntsRequest((JTextArea) args[0], button);
         } else if (type == ButtonType.GUESSING) {
