@@ -1,20 +1,38 @@
 package cs105Project.userInterface.panels;
 
+import cs105Project.RunProject;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
 public final class Selection {
 
     public static void setComponents(final Container pane) {
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(RunProject.class.getClassLoader().getResourceAsStream("bonk.png"));
+        } catch (IOException | NullPointerException ex) {
+            ex.printStackTrace();
+        }
+        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+        picLabel.setBackground(discordGrayer);
+
+        final JPanel imagePanel = new JPanel();
         final JPanel actionPanel = new JPanel(new GridLayout(3,3));
         final JPanel titlePanel = new JPanel(new BorderLayout());
         final JPanel textPanel = new JPanel();
+        final JPanel textAndImagePanel = new JPanel();
+        textAndImagePanel.setLayout(new BoxLayout(textAndImagePanel, BoxLayout.PAGE_AXIS));
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.PAGE_AXIS));
         final JPanel cardPanel = new JPanel(new CardLayout());
 
-        setBackgrounds(actionPanel, textPanel, cardPanel, titlePanel);
+        setBackgrounds(actionPanel, textPanel, cardPanel, textAndImagePanel, titlePanel, imagePanel);
 
         {
             JButton fakeButton = new JButton("Fake button");
@@ -28,12 +46,17 @@ public final class Selection {
             );
         }
 
-        textPanel.add(Box.createVerticalStrut(50));
         textPanel.add(getLabel("Multitool for different purpose", titleFont));
         textPanel.add(getLabel("calculations and fun stuff!", titleFont));
-        textPanel.add(Box.createVerticalStrut(50));
+        textPanel.add(Box.createVerticalStrut(10));
 
-        cardPanel.add(textPanel);
+        imagePanel.add(Box.createHorizontalStrut(-25));
+        imagePanel.add(picLabel);
+
+        textAndImagePanel.add(imagePanel, BorderLayout.NORTH);
+        textAndImagePanel.add(textPanel, BorderLayout.SOUTH);
+
+        cardPanel.add(textAndImagePanel);
 
         titlePanel.add(getSeparator(), BorderLayout.NORTH);
         titlePanel.add(cardPanel, BorderLayout.CENTER);
