@@ -23,22 +23,22 @@ public class ExactCubesRequest implements Request {
     private int lowestBound;
 
     // Output UI References & Variables
-    private JTextArea outputField;
+    private JTextArea outputArea;
     private JProgressBar progressBar;
     private JButton button;
 
-    public ExactCubesRequest(JTextArea outputField, JProgressBar bar, JButton button, String lowestBound, String highestBound) {
+    public ExactCubesRequest(JTextArea outputArea, JProgressBar bar, JButton button, String lowestBound, String highestBound) {
         try {
             this.lowestBound = Integer.parseInt(lowestBound);
             this.highestBound = Integer.parseInt(highestBound);
             if (this.highestBound <= 0 || this.highestBound == Integer.MAX_VALUE || this.lowestBound <= 0 || this.lowestBound >= this.highestBound)
                 throw new NumberFormatException();
         } catch (NumberFormatException ex) {
-            outputField.setText("How about you insert something that works?");
+            updateOutputArea(outputArea, "How about you insert something that works?", 1);
             return;
         }
 
-        this.outputField = outputField;
+        this.outputArea = outputArea;
         this.progressBar = bar;
         this.button = button;
 
@@ -92,7 +92,7 @@ public class ExactCubesRequest implements Request {
         }
 
         // Update output field
-        updateOutputArea(outputField, builder.toString(), index + 8);
+        updateOutputArea(outputArea, builder.toString(), index + 8);
         updateProgressBar(progressBar, 0);
         toggleRunButton(button);
     }
