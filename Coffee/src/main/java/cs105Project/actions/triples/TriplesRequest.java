@@ -1,7 +1,9 @@
 package cs105Project.actions.triples;
 
 import cs105Project.actions.Request;
+import cs105Project.managers.RequestManager;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -14,8 +16,21 @@ public class TriplesRequest implements Request {
     private static final ArrayList<List<Integer>> primitiveRatios = new ArrayList<>();
     private static final ArrayList<List<Integer>> scaledRatios = new ArrayList<>();
 
+    private final JTextArea outputArea;
+    private final JButton button;
+
+    public TriplesRequest(JTextArea outputArea, JButton button) {
+        this.outputArea = outputArea;
+        this.button = button;
+
+        RequestManager.queueRequest(this);
+    }
+
     @Override
     public void run() {
+        toggleRunButton(button);
+        updateOutputArea(outputArea, " ", 1);
+
         primitiveRatios.clear();
         scaledRatios.clear();
 
@@ -23,6 +38,7 @@ public class TriplesRequest implements Request {
         int m = 2;
 
         while (m < 100) {
+
             int n = 1;
             while (n < m) {
 
@@ -54,15 +70,20 @@ public class TriplesRequest implements Request {
             }
         }
 
-        System.out.println("------ Primitive Ratios -------");
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("------- Primitive Ratios -------\n");
         for (List<Integer> ratio : primitiveRatios) {
-            System.out.println(ratio);
+            builder.append(ratio).append("\n");
         }
 
-        System.out.println("------ Scaled Ratios -------");
+        builder.append("\n------- Scaled Ratios -------\n");
         for (List<Integer> ratio : scaledRatios) {
-            System.out.println("[" + ratio + "]");
+            builder.append("[").append(ratio).append("]").append("\n");
         }
+
+        updateOutputArea(outputArea, builder.toString(), 58);
+        toggleRunButton(button);
     }
 
     private static boolean isRatioScaled(List<Integer> ratio) {
