@@ -1,16 +1,8 @@
 package cs105Project;
 
-import cs105Project.actions.Functions;
 import cs105Project.userInterface.MainWindow;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * <h1>Java Program</h1>
@@ -27,7 +19,7 @@ import java.util.stream.IntStream;
 
 public class RunProject {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
