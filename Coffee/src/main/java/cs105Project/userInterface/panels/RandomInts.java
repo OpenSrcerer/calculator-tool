@@ -35,7 +35,6 @@ public final class RandomInts {
         buttonLayout.add(PanelComponents.getButton("Back", ButtonType.BACK));
         buttonHolder.add(buttonLayout);
 
-
         interactionHolder.add(titleHolder, BorderLayout.PAGE_START);
         interactionHolder.add(buttonHolder, BorderLayout.SOUTH);
 
