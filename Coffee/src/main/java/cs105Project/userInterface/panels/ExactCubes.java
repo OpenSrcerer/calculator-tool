@@ -27,7 +27,6 @@ public final class ExactCubes {
         final JPanel buttonHolder = getJPanel(new CardLayout());
         final JPanel buttonAndBarHolder = getJPanel(new BorderLayout());
         final JPanel interactionHolder = getJPanel(new BorderLayout());
-        final JPanel scrollHolder = getJPanel(new GridLayout());
 
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
         JProgressBar progressBar = PanelComponents.getProgressBar();
@@ -63,24 +62,8 @@ public final class ExactCubes {
         interactionHolder.add(inputHolderBoth, BorderLayout.CENTER);
         interactionHolder.add(buttonAndBarHolder, BorderLayout.SOUTH);
 
-        // Create a scroll pane as holder for the output
-        JScrollPane scroll = new JScrollPane(
-                outputArea,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-        );
-        scroll.setBackground(discordGray);
-        scrollHolder.add(scroll);
-
-        JSplitPane splitPane = new JSplitPane(
-                JSplitPane.VERTICAL_SPLIT,
-                interactionHolder, scrollHolder
-        );
-        splitPane.setEnabled(false);
-        splitPane.setDividerSize(1);
-
         pane.add(
-                splitPane,
+                getSplitPane(interactionHolder, outputArea),
                 BorderLayout.CENTER
         );
     }

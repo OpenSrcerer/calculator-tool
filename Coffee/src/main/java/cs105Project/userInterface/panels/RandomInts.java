@@ -21,7 +21,6 @@ public final class RandomInts {
         final JPanel buttonLayout = getJPanel();
         final JPanel buttonHolder = getJPanel(new CardLayout());
         final JPanel interactionHolder = getJPanel(new BorderLayout());
-        final JPanel scrollHolder = getJPanel(new GridLayout());
 
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
 
@@ -39,24 +38,8 @@ public final class RandomInts {
         interactionHolder.add(titleHolder, BorderLayout.PAGE_START);
         interactionHolder.add(buttonHolder, BorderLayout.SOUTH);
 
-        // Create a scroll pane as holder for the output
-        JScrollPane scroll = new JScrollPane(
-                outputArea,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-        );
-        scroll.setBackground(discordGray);
-        scrollHolder.add(scroll);
-
-        JSplitPane splitPane = new JSplitPane(
-                JSplitPane.VERTICAL_SPLIT,
-                interactionHolder, scrollHolder
-        );
-        splitPane.setEnabled(false);
-        splitPane.setDividerSize(1);
-
         pane.add(
-                splitPane,
+                getSplitPane(interactionHolder, outputArea),
                 BorderLayout.CENTER
         );
     }

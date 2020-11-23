@@ -24,9 +24,8 @@ public final class Guessing {
         final JPanel inputHolder = getJPanel(BoxLayout.PAGE_AXIS);
         final JPanel buttonHolder = getJPanel(new CardLayout());
         final JPanel interactionHolder = getJPanel(new BorderLayout());
-        final JPanel scrollHolder = getJPanel(new GridLayout());
 
-        JTextArea outputField = PanelComponents.getTextArea(15,30);
+        JTextArea outputArea = PanelComponents.getTextArea(15,30);
         JTextField inputField = PanelComponents.getTextField("1", 4);
 
         titleHolder.add(getLabel("Number Guessing Game", titleFont));
@@ -40,7 +39,7 @@ public final class Guessing {
 
         inputPanel.add(inputHolder);
 
-        buttonLayout.add(PanelComponents.getButton("Guess", ButtonType.GUESSING, outputField, inputField));
+        buttonLayout.add(PanelComponents.getButton("Guess", ButtonType.GUESSING, outputArea, inputField));
         buttonLayout.add(PanelComponents.getButton("Back", ButtonType.BACK));
         buttonHolder.add(buttonLayout);
 
@@ -48,24 +47,8 @@ public final class Guessing {
         interactionHolder.add(inputPanel, BorderLayout.CENTER);
         interactionHolder.add(buttonHolder, BorderLayout.SOUTH);
 
-        // Create a scroll pane as holder for the output
-        JScrollPane scroll = new JScrollPane(
-                outputField,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-        );
-        scroll.setBackground(discordGray);
-        scrollHolder.add(scroll);
-
-        JSplitPane splitPane = new JSplitPane(
-                JSplitPane.VERTICAL_SPLIT,
-                interactionHolder, scrollHolder
-        );
-        splitPane.setEnabled(false);
-        splitPane.setDividerSize(1);
-
         pane.add(
-                splitPane,
+                getSplitPane(interactionHolder, outputArea),
                 BorderLayout.CENTER
         );
     }

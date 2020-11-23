@@ -24,9 +24,8 @@ public final class Triples {
         final JPanel buttonLayout = getJPanel();
         final JPanel buttonHolder = getJPanel(new CardLayout());
         final JPanel interactionHolder = getJPanel(new BorderLayout());
-        final JPanel scrollHolder = getJPanel(new GridLayout());
 
-        JTextArea outputField = PanelComponents.getTextArea(15,30);
+        JTextArea outputArea = PanelComponents.getTextArea(15,30);
 
         titleHolder.add(getLabel("Pythagorean Triples Calculator", titleFont));
         titleHolder.add(getLabel("Searches for pythagorean triple ratios", descriptionFont));
@@ -34,31 +33,15 @@ public final class Triples {
         titleHolder.add(Box.createVerticalStrut(5));
         titleHolder.add(getSeparator());
 
-        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.TRIPLES, outputField));
+        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.TRIPLES, outputArea));
         buttonLayout.add(PanelComponents.getButton("Back", ButtonType.BACK));
         buttonHolder.add(buttonLayout);
 
         interactionHolder.add(titleHolder, BorderLayout.PAGE_START);
         interactionHolder.add(buttonHolder, BorderLayout.CENTER);
 
-        // Create a scroll pane as holder for the output
-        JScrollPane scroll = new JScrollPane(
-                outputField,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-        );
-        scroll.setBackground(discordGray);
-        scrollHolder.add(scroll);
-
-        JSplitPane splitPane = new JSplitPane(
-                JSplitPane.VERTICAL_SPLIT,
-                interactionHolder, scrollHolder
-        );
-        splitPane.setEnabled(false);
-        splitPane.setDividerSize(1);
-
         pane.add(
-                splitPane,
+                getSplitPane(interactionHolder, outputArea),
                 BorderLayout.CENTER
         );
     }

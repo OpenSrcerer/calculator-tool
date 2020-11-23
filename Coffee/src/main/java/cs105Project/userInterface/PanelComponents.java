@@ -142,6 +142,20 @@ public final class PanelComponents {
         return label;
     }
 
+    public static JLabel getImageLabel(String imgName) {
+        Image myPicture;
+        try {
+            myPicture = getImage(imgName);
+        } catch (IOException | NullPointerException ex) {
+            return getLabel("[Image]", descriptionFont);
+        }
+
+        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+        picLabel.setBackground(discordGrayer);
+
+        return picLabel;
+    }
+
     public static JPanel getBorderedButton(String buttonName, ButtonType type) {
         JPanel panel = new JPanel(new GridLayout(1, 1));
         panel.add(getButton(buttonName, type));
@@ -169,6 +183,27 @@ public final class PanelComponents {
         return box;
     }
 
+    public static JSplitPane getSplitPane(JPanel interactionHolder, JTextArea outputArea) {
+        // Create a scroll pane as holder for the output
+        final JPanel scrollHolder = getJPanel(new GridLayout());
+        final JScrollPane scroll = new JScrollPane(
+                outputArea,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+        );
+        scroll.setBackground(discordGray);
+        scrollHolder.add(scroll);
+
+        JSplitPane splitPane = new JSplitPane(
+                JSplitPane.VERTICAL_SPLIT,
+                interactionHolder, scrollHolder
+        );
+        splitPane.setEnabled(false);
+        splitPane.setDividerSize(1);
+
+        return splitPane;
+    }
+
     public static Image getImage(String imgName) throws IOException, NullPointerException {
         BufferedImage image;
 
@@ -178,20 +213,6 @@ public final class PanelComponents {
         image = ImageIO.read(imageStream);
 
         return image;
-    }
-
-    public static JLabel getImageLabel(String imgName) {
-        Image myPicture;
-        try {
-            myPicture = getImage(imgName);
-        } catch (IOException | NullPointerException ex) {
-            return getLabel("[Image]", descriptionFont);
-        }
-
-        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-        picLabel.setBackground(discordGrayer);
-
-        return picLabel;
     }
 
     /**

@@ -31,7 +31,7 @@ public class FactorialRequest implements Request {
                 if (numbers[index] <= 0 || numbers[index] >= 15)
                     throw new NumberFormatException();
             } catch (NumberFormatException ex) {
-                updateOutputArea(outputArea, "How about you insert something that works?", 1);
+                updateOutputArea(outputArea, "How about you insert something that works?\n", 1);
                 return;
             }
         }
