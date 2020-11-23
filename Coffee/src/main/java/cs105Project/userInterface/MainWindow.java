@@ -4,13 +4,21 @@ import cs105Project.userInterface.panels.Selection;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public final class MainWindow extends JFrame {
 
     private static final MainWindow window = new MainWindow();
 
     private MainWindow() {
-        super("Multitool");
+        super("The One and Only Multitool");
+
+        try {
+            setIconImage(PanelComponents.getImage("mtool.png"));
+        } catch (IOException | NullPointerException ignored) {
+            // If new icon cannot be found, fall back to default
+        }
+
         setResizable(false);
     }
 
