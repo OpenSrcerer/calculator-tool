@@ -1,11 +1,14 @@
-package cs105Project.actions.palindrome;
+package cs105Project.actions;
 
-import cs105Project.actions.Functions;
-import cs105Project.actions.Request;
 import cs105Project.managers.RequestManager;
 
 import javax.swing.*;
 
+/**
+ * Menu option 5: Palindrome detection. Ask the user to input a string. Check if the string is a
+ * palindrome. You may need to look up string manipulation functions in the Java library help pages
+ * for this option.
+ */
 public class PalindromeRequest implements Request {
     // What is taken as input
     private final String stringToTest;

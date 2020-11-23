@@ -7,22 +7,22 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
+/**
+ * Menu option 5: Palindrome detection. Ask the user to input a string. Check if the string is a
+ * palindrome. You may need to look up string manipulation functions in the Java library help pages
+ * for this option.
+ */
 public final class Palindrome {
     public static void setComponents(final Container pane) {
         // Init all the JPanels necessary for this program.
-        final JPanel titleHolder = new JPanel();
-        titleHolder.setLayout(new BoxLayout(titleHolder, BoxLayout.PAGE_AXIS));
-        final JPanel inputBox = new JPanel();
-        inputBox.setLayout(new BoxLayout(inputBox, BoxLayout.PAGE_AXIS));
-        final JPanel buttonHolder = new JPanel();
-        buttonHolder.setLayout(new BoxLayout(buttonHolder, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolder = new JPanel();
-        final JPanel checkBoxHolder = new JPanel();
-        final JPanel buttonLayout = new JPanel();
-        final JPanel interactionHolder = new JPanel(new BorderLayout());
-        final JPanel scrollHolder = new JPanel(new GridLayout());
-
-        setBackgrounds(buttonHolder, interactionHolder, scrollHolder, buttonLayout, inputBox, inputHolder, titleHolder, checkBoxHolder);
+        final JPanel titleHolder = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel buttonHolder = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputBox = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolder = getJPanel();
+        final JPanel checkBoxHolder = getJPanel();
+        final JPanel buttonLayout = getJPanel();
+        final JPanel interactionHolder = getJPanel(new BorderLayout());
+        final JPanel scrollHolder = getJPanel(new GridLayout());
 
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
         JTextField inputField = PanelComponents.getTextField("Insert String", 30);
