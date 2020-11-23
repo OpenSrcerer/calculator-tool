@@ -1,9 +1,24 @@
+/*
+ * Made for the Final Project in CS105, due December 4th 2020. <br>
+ * This work is licensed under the GNU General Public License v3.0 <br>
+ * GNU © 2020 Daniel Stefani / OpenSrcerer
+ */
+
 package cs105Project.actions;
 
 import javax.swing.*;
 
+/**
+ * This interface has the purpose of making it easy
+ * for the processing queue to handle every action
+ * taken.
+ */
 public interface Request extends Runnable {
 
+    /**
+     * Toggles the state of a JButton to clickable or not (run buttons primarily).
+     * @param button Target button.
+     */
     default void toggleRunButton(JButton button) {
         SwingUtilities.invokeLater(() -> button.setEnabled(!button.isEnabled()));
     }

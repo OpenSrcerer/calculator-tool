@@ -1,3 +1,9 @@
+/*
+ * Made for the Final Project in CS105, due December 4th 2020. <br>
+ * This work is licensed under the GNU General Public License v3.0 <br>
+ * GNU © 2020 Daniel Stefani / OpenSrcerer
+ */
+
 package cs105Project.userInterface;
 
 import cs105Project.userInterface.panels.Selection;
@@ -6,6 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * The main and only JFrame that the GUI uses.
+ */
 public final class MainWindow extends JFrame {
 
     private static final MainWindow window = new MainWindow();
@@ -40,18 +49,31 @@ public final class MainWindow extends JFrame {
         window.setVisible(true);
     }
 
+    /**
+     * @return The content pane for this JFrame.
+     */
     public static Container getWindowPane() {
         return window.getContentPane();
     }
 
+    /**
+     * Packs JFrame so that every element fits to
+     * its preferred size.
+     */
     public static void packJFrame() {
         window.pack();
     }
 
+    /**
+     * Repaints JFrame for every component in it to reload.
+     */
     public static void repaintJFrame() {
         window.repaint();
     }
 
+    /**
+     * Dispose of the window and exit the program.
+     */
     public static void disposeJFrame() {
         window.dispose();
     }

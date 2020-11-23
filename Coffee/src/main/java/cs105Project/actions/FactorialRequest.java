@@ -1,3 +1,9 @@
+/*
+ * Made for the Final Project in CS105, due December 4th 2020. <br>
+ * This work is licensed under the GNU General Public License v3.0 <br>
+ * GNU © 2020 Daniel Stefani / OpenSrcerer
+ */
+
 package cs105Project.actions;
 
 import cs105Project.managers.RequestManager;
@@ -13,7 +19,6 @@ import java.util.stream.IntStream;
  * factorial formula in a mathematics book. You should build the code for the calculation of the
  * factorial rather than use a built-in Java function.
  */
-
 public class FactorialRequest implements Request {
 
     private final int[] numbers = new int[5];

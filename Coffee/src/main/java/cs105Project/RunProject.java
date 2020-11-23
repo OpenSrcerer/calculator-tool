@@ -8,7 +8,9 @@ package cs105Project;
 
 import cs105Project.userInterface.MainWindow;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * <h1>A Calculation Multitool</h1>
