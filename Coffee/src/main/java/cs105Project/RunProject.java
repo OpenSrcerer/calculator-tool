@@ -3,6 +3,7 @@ package cs105Project;
 import cs105Project.userInterface.MainWindow;
 
 import javax.swing.*;
+import java.io.IOException;
 
 /**
  * <h1>Java Program</h1>
@@ -19,13 +20,26 @@ import javax.swing.*;
 
 public class RunProject {
 
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    private static boolean lookAndFeelSuccessful = false;
+
+    public static void main(String[] args) throws UnsupportedLookAndFeelException {
+
+        setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        if (!lookAndFeelSuccessful)
+            setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+
+        if (!lookAndFeelSuccessful)
+            throw new UnsupportedLookAndFeelException("Program is unable to start, provided look and feels are incompatible!");
 
         SwingUtilities.invokeLater(MainWindow::createAndShowGUI);
+    }
+
+    private static void setLookAndFeel(String lfClassName) {
+        try {
+            UIManager.setLookAndFeel(lfClassName);
+            lookAndFeelSuccessful = true;
+        } catch (IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException | ClassNotFoundException ex) {
+            System.out.println("Look and feel is unsupported.");
+        }
     }
 }
