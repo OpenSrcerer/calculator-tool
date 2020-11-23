@@ -7,27 +7,28 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
+/**
+ * Menu option 3: Stats of random integers. Pick 6 random integers between 0 and 100 and
+ * then display their sum, product, statistical variance and standard deviation. You may need to look
+ * up pseudorandom number generation functions and the relevant mathematical formulae for the
+ * statistical metrics (choose the population formula to calculate standard deviation, rather than the
+ * one for sample.)
+ */
 public final class RandomInts {
 
     public static void setComponents(final Container pane) {
-        // Init all the JPanels necessary for this program
-        final JPanel titleHolder = new JPanel();
-        titleHolder.setLayout(new BoxLayout(titleHolder, BoxLayout.PAGE_AXIS));
-
-        // Other JPanels and FlowLayouts
-        final JPanel buttonLayout = new JPanel();
-        final JPanel buttonHolder = new JPanel(new CardLayout());
-        final JPanel interactionHolder = new JPanel(new BorderLayout());
-        final JPanel scrollHolder = new JPanel(new GridLayout());
-
-        setBackgrounds(buttonHolder, interactionHolder, scrollHolder, buttonLayout, titleHolder);
+        final JPanel titleHolder = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel buttonLayout = getJPanel();
+        final JPanel buttonHolder = getJPanel(new CardLayout());
+        final JPanel interactionHolder = getJPanel(new BorderLayout());
+        final JPanel scrollHolder = getJPanel(new GridLayout());
 
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
 
-        titleHolder.add(getLabel("Stats of Random Integers", titleFont));
+        titleHolder.add(getLabel("Stats of Random Integers (0-100)", titleFont));
         titleHolder.add(getLabel("Gets these stats for 6 random integers:", descriptionFont));
-        titleHolder.add(getLabel("Sum, Product", descriptionFont));
-        titleHolder.add(getLabel("Variance, Standard Deviation", descriptionFont));
+        titleHolder.add(getLabel("Sum, Product, Variance,", descriptionFont));
+        titleHolder.add(getLabel("Standard Deviation", descriptionFont));
         titleHolder.add(Box.createVerticalStrut(5));
         titleHolder.add(getSeparator());
 

@@ -1,7 +1,5 @@
-package cs105Project.actions.randomInts;
+package cs105Project.actions;
 
-import cs105Project.actions.Functions;
-import cs105Project.actions.Request;
 import cs105Project.managers.RequestManager;
 
 import javax.swing.*;
@@ -9,6 +7,13 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
+/**
+ * Menu option 3: Stats of random integers. Pick 6 random integers between 0 and 100 and
+ * then display their sum, product, statistical variance and standard deviation. You may need to look
+ * up pseudorandom number generation functions and the relevant mathematical formulae for the
+ * statistical metrics (choose the population formula to calculate standard deviation, rather than the
+ * one for sample.)
+ */
 public class RandomIntsRequest implements Request {
     // Output UI References & Variables
     private final JTextArea outputArea;
