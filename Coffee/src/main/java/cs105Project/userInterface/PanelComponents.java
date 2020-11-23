@@ -1,5 +1,6 @@
 package cs105Project.userInterface;
 
+import cs105Project.RunProject;
 import cs105Project.actions.exactCubes.ExactCubesRequest;
 import cs105Project.actions.factorial.FactorialRequest;
 import cs105Project.actions.guessing.GuessingRequest;
@@ -9,10 +10,15 @@ import cs105Project.actions.triples.TriplesRequest;
 import cs105Project.managers.RequestManager;
 import cs105Project.userInterface.panels.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * This class is used to retrieve custom stylized JComponents
  * to match the ambiance and theme of the UI.
@@ -139,6 +145,24 @@ public final class PanelComponents {
         box.setFont(actionFont);
         box.setForeground(discordLightGray);
         return box;
+    }
+
+    public static JLabel getImageLabel() {
+        BufferedImage myPicture;
+
+        try {
+            InputStream imageStream = RunProject.class.getClassLoader().getResourceAsStream("bonk.png");
+            if (imageStream == null)
+                throw new NullPointerException();
+            myPicture = ImageIO.read(imageStream);
+        } catch (IOException | NullPointerException ex) {
+            return new JLabel("[Image]");
+        }
+
+        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+        picLabel.setBackground(discordGrayer);
+
+        return picLabel;
     }
 
     public static void setBackgrounds(JPanel... panels) {
