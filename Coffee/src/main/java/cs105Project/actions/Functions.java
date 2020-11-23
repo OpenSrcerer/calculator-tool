@@ -6,8 +6,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * A class with functions created especially for this project
- * and arranged for easy access.
+ * A class with functions created especially for this project's
+ * calculations and arranged for easy access.
  */
 public final class Functions {
     public static long[] getRandomValues() {
