@@ -2,11 +2,11 @@ package cs105Project.userInterface;
 
 import cs105Project.RunProject;
 import cs105Project.actions.exactCubes.ExactCubesRequest;
-import cs105Project.actions.factorial.FactorialRequest;
-import cs105Project.actions.guessing.GuessingRequest;
-import cs105Project.actions.palindrome.PalindromeRequest;
-import cs105Project.actions.randomInts.RandomIntsRequest;
-import cs105Project.actions.triples.TriplesRequest;
+import cs105Project.actions.FactorialRequest;
+import cs105Project.actions.GuessingRequest;
+import cs105Project.actions.PalindromeRequest;
+import cs105Project.actions.RandomIntsRequest;
+import cs105Project.actions.TriplesRequest;
 import cs105Project.managers.RequestManager;
 import cs105Project.userInterface.panels.*;
 
@@ -67,6 +67,11 @@ public final class PanelComponents {
         return button;
     }
 
+    /**
+     * Changes a given button's theme to match the discord theme.
+     * @param buttonName String to change the button name to.
+     * @param button Button to change.
+     */
     public static void setButtonPalette(String buttonName, JButton button) {
         button.setText("<html>" + buttonName + "</html>");
         button.setOpaque(true);
@@ -76,6 +81,9 @@ public final class PanelComponents {
         button.setFont(actionFont);
     }
 
+    /**
+     * @return A discord-themed JSeperator.
+     */
     public static JSeparator getSeparator() {
         JSeparator separator = new JSeparator();
         separator.setBackground(discordGrayer);
@@ -83,8 +91,22 @@ public final class PanelComponents {
         return separator;
     }
 
-    public static JPanel getEmptyJPanel() {
+    public static JPanel getJPanel() {
         JPanel panel = new JPanel();
+        panel.setBackground(discordGrayer);
+        return panel;
+    }
+
+    public static JPanel getJPanel(LayoutManager manager) {
+        JPanel panel = new JPanel();
+        panel.setLayout(manager);
+        panel.setBackground(discordGrayer);
+        return panel;
+    }
+
+    public static JPanel getJPanel(int layout) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, layout));
         panel.setBackground(discordGrayer);
         return panel;
     }
@@ -147,16 +169,23 @@ public final class PanelComponents {
         return box;
     }
 
-    public static JLabel getImageLabel() {
-        BufferedImage myPicture;
+    public static Image getImage(String imgName) throws IOException, NullPointerException {
+        BufferedImage image;
 
+        InputStream imageStream = RunProject.class.getClassLoader().getResourceAsStream(imgName);
+        if (imageStream == null)
+            throw new NullPointerException();
+        image = ImageIO.read(imageStream);
+
+        return image;
+    }
+
+    public static JLabel getImageLabel(String imgName) {
+        Image myPicture;
         try {
-            InputStream imageStream = RunProject.class.getClassLoader().getResourceAsStream("bonk.png");
-            if (imageStream == null)
-                throw new NullPointerException();
-            myPicture = ImageIO.read(imageStream);
+            myPicture = getImage(imgName);
         } catch (IOException | NullPointerException ex) {
-            return new JLabel("[Image]");
+            return getLabel("[Image]", descriptionFont);
         }
 
         JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -165,6 +194,16 @@ public final class PanelComponents {
         return picLabel;
     }
 
+    /**
+     * Takes in a number of JPanels and sets
+     * their background to discordGrayer.
+     *
+     * @deprecated Due to the getJPanel method
+     * setting a custom background color
+     * background without the need of
+     * this method.
+     */
+    @Deprecated
     public static void setBackgrounds(JPanel... panels) {
         for (JPanel panel : panels) {
             panel.setBackground(discordGrayer);
@@ -198,11 +237,23 @@ public final class PanelComponents {
     }
 
     private static ActionListener getListener(ButtonType type) {
-        /*if (type == ButtonType.HELP) {
-
+        if (type == ButtonType.HELP) {
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                Help.setComponents(MainWindow.getWindowPane());
+                MainWindow.packJFrame();
+                MainWindow.repaintJFrame();
+            };
         } else if (type == ButtonType.CREDITS) {
-
-        } else*/ if (type == ButtonType.EXACTCUBES) {
+            return e -> {
+                MainWindow.getWindowPane().removeAll();
+                MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
+                Credits.setComponents(MainWindow.getWindowPane());
+                MainWindow.packJFrame();
+                MainWindow.repaintJFrame();
+            };
+        } else if (type == ButtonType.EXACTCUBES) {
             return e -> {
                 MainWindow.getWindowPane().removeAll();
                 MainWindow.getWindowPane().setCursor(Cursor.getDefaultCursor());
@@ -264,8 +315,8 @@ public final class PanelComponents {
                 RequestManager.killExecutor();
             };
         }
-        // shut up compiler
-        // will never happen
+
+        // Will never happen
         return null;
     }
 
@@ -284,8 +335,8 @@ public final class PanelComponents {
         } else if (type == ButtonType.TRIPLES) {
             return e -> new TriplesRequest((JTextArea) args[0], button);
         }
-        // shut up compiler
-        // will never happen
+
+        // Will never happen
         return null;
     }
 }
