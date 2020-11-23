@@ -7,25 +7,27 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
+/**
+ * Menu option 1: Exact cubes. Calculate and display the list of all integer numbers between the lowest bound
+ * and the highest bound which are the exact cube of another integer. Your program should also calculate the sum,
+ * average, statistical variance and standard deviation of all exact cubes it discovers within the
+ * prescribed range. Example: integer 8 is the exact cube of integer 2, 27 is the cube of integer 3, 64
+ * is the cube of 4, etc.
+ */
 public final class ExactCubes {
 
     public static void setComponents(final Container pane) {
         // Init all the JPanels necessary for this program.
-        final JPanel titleHolder = new JPanel();
-        final JPanel barHolder = new JPanel();
-        titleHolder.setLayout(new BoxLayout(titleHolder, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolderL = new JPanel();
-        inputHolderL.setLayout(new BoxLayout(inputHolderL, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolderR = new JPanel();
-        inputHolderR.setLayout(new BoxLayout(inputHolderR, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolderBoth = new JPanel();
-        final JPanel buttonLayout = new JPanel();
-        final JPanel buttonHolder = new JPanel(new CardLayout());
-        final JPanel buttonAndBarHolder = new JPanel(new BorderLayout());
-        final JPanel interactionHolder = new JPanel(new BorderLayout());
-        final JPanel scrollHolder = new JPanel(new GridLayout());
-
-        setBackgrounds(buttonHolder, interactionHolder, scrollHolder, buttonLayout, inputHolderL, inputHolderR, inputHolderBoth, titleHolder, barHolder);
+        final JPanel titleHolder = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolderL = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolderR = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel barHolder = getJPanel();
+        final JPanel inputHolderBoth = getJPanel();
+        final JPanel buttonLayout = getJPanel();
+        final JPanel buttonHolder = getJPanel(new CardLayout());
+        final JPanel buttonAndBarHolder = getJPanel(new BorderLayout());
+        final JPanel interactionHolder = getJPanel(new BorderLayout());
+        final JPanel scrollHolder = getJPanel(new GridLayout());
 
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
         JProgressBar progressBar = PanelComponents.getProgressBar();
