@@ -1,6 +1,5 @@
-package cs105Project.actions.triples;
+package cs105Project.actions;
 
-import cs105Project.actions.Request;
 import cs105Project.managers.RequestManager;
 
 import javax.swing.*;
@@ -11,10 +10,18 @@ import java.util.List;
 
 import static cs105Project.actions.Functions.multiplyListBy;
 
+/**
+ * Menu option 6: Pythagorean triples. Look up "Pythagorean triples" in a mathematics book or
+ * online. There exist exactly 16 primitive Pythagorean triples involving integers with a hypotenuse
+ * value smaller or equal to 100. Write a program that scans all possible integer combinations,
+ * discovers the primitive triples and displays them on screen. Triples which are duplicates (for
+ * instance [3, 4, 5] and [4, 3, 5]) or multiples (for instance [9, 12, 15] which is 3×[3, 4, 5]) should
+ * also be displayed but marked in brackets in your output list, since they are considered to be mere
+ * variations of primitive triples which should have appeared in your list earlier.
+ */
 public class TriplesRequest implements Request {
 
     private static final ArrayList<List<Integer>> primitiveRatios = new ArrayList<>();
-    private static final ArrayList<List<Integer>> scaledRatios = new ArrayList<>();
 
     private final JTextArea outputArea;
     private final JButton button;
@@ -32,7 +39,10 @@ public class TriplesRequest implements Request {
         updateOutputArea(outputArea, " ", 1);
 
         primitiveRatios.clear();
-        scaledRatios.clear();
+
+        StringBuilder primitiveBuilder = new StringBuilder(), scaledBuilder = new StringBuilder();
+        primitiveBuilder.append("------- Primitive Ratios -------\n");
+        scaledBuilder.append("\n------- Scaled Ratios -------\n");
 
         int a, b, c;
         int m = 2;
@@ -46,7 +56,7 @@ public class TriplesRequest implements Request {
                 b = 2 * m * n;
                 c = (m * m) + (n * n);
 
-                if (c >= 100)
+                if (c > 100)
                     break;
 
                 if ((a * a) + (b * b) == (c * c)) {
@@ -65,24 +75,16 @@ public class TriplesRequest implements Request {
         for (List<Integer> ratio : primitiveRatios) {
             int index = 2;
             while (ratio.get(2) * index <= 100) {
-                scaledRatios.add(multiplyListBy(ratio, index));
+                scaledBuilder.append("<").append(multiplyListBy(ratio, index)).append("> - Multiple of ").append(ratio).append(" by ").append(index).append(".").append("\n");
                 ++index;
             }
         }
 
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("------- Primitive Ratios -------\n");
         for (List<Integer> ratio : primitiveRatios) {
-            builder.append(ratio).append("\n");
+            primitiveBuilder.append(ratio).append("\n");
         }
 
-        builder.append("\n------- Scaled Ratios -------\n");
-        for (List<Integer> ratio : scaledRatios) {
-            builder.append("[").append(ratio).append("]").append("\n");
-        }
-
-        updateOutputArea(outputArea, builder.toString(), 58);
+        updateOutputArea(outputArea, primitiveBuilder.toString() + scaledBuilder.toString(), 55);
         toggleRunButton(button);
     }
 
