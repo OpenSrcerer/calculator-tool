@@ -1,11 +1,17 @@
-package cs105Project.actions.guessing;
+package cs105Project.actions;
 
-import cs105Project.actions.Request;
 import cs105Project.managers.RequestManager;
 
 import javax.swing.*;
 import java.util.Random;
 
+/**
+ * Menu option 4: Number guessing game. The program picks a random integer between 0 and
+ * 65 and then asks the user to guess what it is. Every time the user misses a guess the program
+ * tells them if their guess was higher or lower than the target number. In the end, when the user
+ * guesses correctly they are congratulated and told how many guesses it took for them to find the
+ * number. You may need to look up the random integer generation functions in the Java help files.
+ */
 public class GuessingRequest implements Request {
 
     private static int numberToGuess = new Random().nextInt(66);
@@ -22,7 +28,7 @@ public class GuessingRequest implements Request {
 
         try {
             this.userInput = Integer.parseInt(userInput);
-            if (this.userInput <= 0 || this.userInput >= 66)
+            if (this.userInput < 0 || this.userInput > 65)
                 throw new NumberFormatException();
         } catch (NumberFormatException ex) {
             updateOutputArea(outputArea, outputArea.getText() + "How about you insert something that works?\n", outputArea.getRows() + 1);
