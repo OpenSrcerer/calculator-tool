@@ -10,16 +10,12 @@ import static cs105Project.userInterface.PanelComponents.*;
 public final class Selection {
 
     public static void setComponents(final Container pane) {
-        final JPanel imagePanel = new JPanel();
-        final JPanel actionPanel = new JPanel(new GridLayout(3,3));
-        final JPanel titlePanel = new JPanel(new BorderLayout());
-        final JPanel textPanel = new JPanel();
-        final JPanel textAndImagePanel = new JPanel();
-        textAndImagePanel.setLayout(new BoxLayout(textAndImagePanel, BoxLayout.PAGE_AXIS));
-        textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.PAGE_AXIS));
-        final JPanel cardPanel = new JPanel(new CardLayout());
-
-        setBackgrounds(actionPanel, textPanel, cardPanel, textAndImagePanel, titlePanel, imagePanel);
+        final JPanel imagePanel = getJPanel();
+        final JPanel actionPanel = getJPanel(new GridLayout(3,3));
+        final JPanel titlePanel = getJPanel(new BorderLayout());
+        final JPanel textPanel = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel textAndImagePanel = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel cardPanel = getJPanel(new CardLayout());
 
         {
             JButton fakeButton = new JButton("Fake button");
@@ -38,7 +34,7 @@ public final class Selection {
         textPanel.add(Box.createVerticalStrut(10));
 
         imagePanel.add(Box.createHorizontalStrut(-25));
-        imagePanel.add(PanelComponents.getImageLabel());
+        imagePanel.add(PanelComponents.getImageLabel("mtool.png"));
 
         textAndImagePanel.add(imagePanel, BorderLayout.NORTH);
         textAndImagePanel.add(textPanel, BorderLayout.SOUTH);
@@ -55,7 +51,7 @@ public final class Selection {
         actionPanel.add(getBorderedButton("Number <br>Guessing Game", ButtonType.GUESSING));
         actionPanel.add(getBorderedButton("Palindrome <br>Detection", ButtonType.PALINDROME));
         actionPanel.add(getBorderedButton("Pythagorean <br>Triples", ButtonType.TRIPLES));
-        actionPanel.add(getEmptyJPanel());
+        actionPanel.add(PanelComponents.getJPanel());
         actionPanel.add(getBorderedButton("Exit", ButtonType.EXIT));
 
         pane.add(TopPanel.getTopPanel(), BorderLayout.NORTH);
