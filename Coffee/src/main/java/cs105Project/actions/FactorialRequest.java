@@ -1,11 +1,18 @@
-package cs105Project.actions.factorial;
+package cs105Project.actions;
 
-import cs105Project.actions.Request;
 import cs105Project.managers.RequestManager;
 
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.stream.IntStream;
+
+/**
+ * Menu option 2: Factorial of the average. Ask the user to input 5 positive integers between 0
+ * and 15. Proceed to calculate and display the average of the 5 integers, as well as the factorial of
+ * the integer in the group which is closest to the group's average. You may need to look up the
+ * factorial formula in a mathematics book. You should build the code for the calculation of the
+ * factorial rather than use a built-in Java function.
+ */
 
 public class FactorialRequest implements Request {
 

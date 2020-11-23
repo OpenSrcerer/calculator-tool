@@ -7,33 +7,30 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
+/**
+ * Menu option 2: Factorial of the average. Ask the user to input 5 positive integers between 0
+ * and 15. Proceed to calculate and display the average of the 5 integers, as well as the factorial of
+ * the integer in the group which is closest to the group's average. You may need to look up the
+ * factorial formula in a mathematics book. You should build the code for the calculation of the
+ * factorial rather than use a built-in Java function.
+ */
+
 public final class Factorial {
 
     public static void setComponents(final Container pane) {
         // Init all the JPanels necessary for this program.
-        final JPanel titleHolder = new JPanel();
-        titleHolder.setLayout(new BoxLayout(titleHolder, BoxLayout.PAGE_AXIS));
+        final JPanel titleHolder = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolder1 = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolder2 = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolder3 = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolder4 = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolder5 = getJPanel(BoxLayout.PAGE_AXIS);
+        final JPanel inputHolderAll = getJPanel();
 
-        // Input Holders
-        final JPanel inputHolder1 = new JPanel();
-        inputHolder1.setLayout(new BoxLayout(inputHolder1, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolder2 = new JPanel();
-        inputHolder2.setLayout(new BoxLayout(inputHolder2, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolder3 = new JPanel();
-        inputHolder3.setLayout(new BoxLayout(inputHolder3, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolder4 = new JPanel();
-        inputHolder4.setLayout(new BoxLayout(inputHolder4, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolder5 = new JPanel();
-        inputHolder5.setLayout(new BoxLayout(inputHolder5, BoxLayout.PAGE_AXIS));
-        final JPanel inputHolderAll = new JPanel();
-
-        final JPanel buttonLayout = new JPanel();
-        final JPanel buttonHolder = new JPanel(new CardLayout());
-        final JPanel interactionHolder = new JPanel(new BorderLayout());
-        final JPanel scrollHolder = new JPanel(new GridLayout());
-
-        setBackgrounds(buttonHolder, interactionHolder, scrollHolder, buttonLayout, inputHolder1,
-                inputHolder2, inputHolder3, inputHolder4, inputHolder5, inputHolderAll, titleHolder);
+        final JPanel buttonLayout = getJPanel();
+        final JPanel buttonHolder = getJPanel(new CardLayout());
+        final JPanel interactionHolder = getJPanel(new BorderLayout());
+        final JPanel scrollHolder = getJPanel(new GridLayout());
 
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
         JTextField[] inputFields = {
