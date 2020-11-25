@@ -11,8 +11,15 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
+/**
+ * Manages the Help UI menu.
+ */
 public final class Help {
 
+    /**
+     * Set specific components to a target ContentPane.
+     * @param pane Target ContentPane.
+     */
     public static void setComponents(final Container pane) {
         final JPanel infoPanel = getJPanel(BoxLayout.PAGE_AXIS);
         final JPanel buttonPanel = getJPanel();

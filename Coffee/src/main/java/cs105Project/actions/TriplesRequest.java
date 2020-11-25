@@ -27,11 +27,28 @@ import static cs105Project.actions.Functions.multiplyListBy;
  */
 public class TriplesRequest implements Request {
 
+    /**
+     * ArrayList of Lists of Integers that contain
+     * the found primitiveRatios.
+     */
     private static final ArrayList<List<Integer>> primitiveRatios = new ArrayList<>();
 
+    /**
+     * Output area for the program's output.
+     */
     private final JTextArea outputArea;
+
+    /**
+     * Button that starts the execution of this request.
+     */
     private final JButton button;
 
+    /**
+     * Creates a new TripleRequest object and adds it to the
+     * Request queue.
+     * @param outputArea JTextArea to redirect output to.
+     * @param button JButton that started the creation of this request.
+     */
     public TriplesRequest(JTextArea outputArea, JButton button) {
         this.outputArea = outputArea;
         this.button = button;
@@ -94,6 +111,13 @@ public class TriplesRequest implements Request {
         toggleRunButton(button);
     }
 
+    /**
+     * Takes a ratio in and figures out whether this ratio
+     * is the scaled version of another ratio by checking it
+     * to the list of primitive ratios.
+     * @param ratio Ratio parameter.
+     * @return Whether the ratio parameter is scaled.
+     */
     private static boolean isRatioScaled(List<Integer> ratio) {
         for (List<Integer> primitiveRatio : primitiveRatios) {
             double div1 = (double) ratio.get(0) / primitiveRatio.get(0);

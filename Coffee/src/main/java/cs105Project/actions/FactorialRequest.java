@@ -21,11 +21,28 @@ import java.util.stream.IntStream;
  */
 public class FactorialRequest implements Request {
 
+    /**
+     * Array that contains 5 integers input from the user.
+     */
     private final int[] numbers = new int[5];
 
+    /**
+     * Output area for the program's output.
+     */
     private final JTextArea outputArea;
+
+    /**
+     * Button that starts the execution of this request.
+     */
     private final JButton button;
 
+    /**
+     * Create a new FactorialRequest object and put it in the
+     * Request queue.
+     * @param outputArea Output area for the program's output.
+     * @param button Button that starts the execution of this request.
+     * @param fields TextFields to parse the input from.
+     */
     public FactorialRequest(JTextArea outputArea, JButton button, JTextField[] fields) {
         this.outputArea = outputArea;
         this.button = button;
@@ -64,6 +81,11 @@ public class FactorialRequest implements Request {
         toggleRunButton(button);
     }
 
+    /**
+     * @param ints Array of integers to test
+     * @param average Calculated average of these numbers
+     * @return Number in the array closest to the average
+     */
     private static int getClosestToAverage(int[] ints, double average) {
         int closest = 0;
         double delta = Double.MAX_VALUE;
@@ -78,6 +100,10 @@ public class FactorialRequest implements Request {
         return closest;
     }
 
+    /**
+     * @param integer Given integer
+     * @return Factorial of given integer
+     */
     public static long getFactorial(int integer) {
         long returnValue = integer;
 

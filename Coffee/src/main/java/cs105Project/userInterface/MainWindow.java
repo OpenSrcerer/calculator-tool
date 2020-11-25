@@ -17,6 +17,9 @@ import java.io.IOException;
  */
 public final class MainWindow extends JFrame {
 
+    /**
+     * Main window where everything occurs! Only created once.
+     */
     private static final MainWindow window = new MainWindow();
 
     private MainWindow() {

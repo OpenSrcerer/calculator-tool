@@ -22,6 +22,11 @@ import static cs105Project.userInterface.PanelComponents.*;
  * number. You may need to look up the random integer generation functions in the Java help files.
  */
 public final class Guessing {
+
+    /**
+     * Set specific components to a target ContentPane.
+     * @param pane Target ContentPane.
+     */
     public static void setComponents(final Container pane) {
 
         // Init all the JPanels necessary for this program.

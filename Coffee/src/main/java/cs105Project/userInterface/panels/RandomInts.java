@@ -22,6 +22,10 @@ import static cs105Project.userInterface.PanelComponents.*;
  */
 public final class RandomInts {
 
+    /**
+     * Set specific components to a target ContentPane.
+     * @param pane Target ContentPane.
+     */
     public static void setComponents(final Container pane) {
         final JPanel titleHolder = getJPanel(BoxLayout.PAGE_AXIS);
         final JPanel buttonLayout = getJPanel();

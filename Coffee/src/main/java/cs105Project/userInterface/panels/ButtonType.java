@@ -16,9 +16,54 @@ package cs105Project.userInterface.panels;
  * a ButtonType value to them.
  */
 public enum ButtonType {
-    // UTILITY BUTTONS
-    HELP, CREDITS, EXIT, BACK,
-    // ACTION BUTTONS
-    EXACTCUBES, FACTORIAL, RANDOMINTS,
-    GUESSING, PALINDROME, TRIPLES
+
+    /**
+     * Represents the "Help" button in the UI.
+     */
+    HELP,
+
+    /**
+     * Represents the "Credits" button in the UI.
+     */
+    CREDITS,
+
+    /**
+     * Represents the "Exit" button in the UI.
+     */
+    EXIT,
+
+    /**
+     * Represents the "Back" button in the UI.
+     */
+    BACK,
+
+    /**
+     * Represents the "ExactCubes" button in the UI.
+     */
+    EXACTCUBES,
+
+    /**
+     * Represents the "Factorial" button in the UI.
+     */
+    FACTORIAL,
+
+    /**
+     * Represents the "RandomInts" button in the UI.
+     */
+    RANDOMINTS,
+
+    /**
+     * Represents the "Guessing Game" button in the UI.
+     */
+    GUESSING,
+
+    /**
+     * Represents the "Palindrome Checker" button in the UI.
+     */
+    PALINDROME,
+
+    /**
+     * Represents the "Pythagorean Triples" button in the UI.
+     */
+    TRIPLES
 }

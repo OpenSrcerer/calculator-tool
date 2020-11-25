@@ -22,18 +22,51 @@ import java.util.ArrayList;
  */
 
 public class ExactCubesRequest implements Request {
+    /**
+     * Retrieve the instance of CandidateRoot to help with the calculations.
+     */
     private final CandidateRoot candidate = CandidateRoot.getInstance();
 
-    // Nullable values
+    /**
+     * Where to start looking for exact cubes.
+     */
     private int highestBound;
+
+    /**
+     * Where to stop looking for exact cubes.
+     */
     private int lowestBound;
 
-    // Output UI References & Variables
-    private JTextArea outputArea;
-    private JProgressBar progressBar;
-    private JButton button;
+    /**
+     * Output area for the program's output.
+     */
+    private final JTextArea outputArea;
 
+    /**
+     * Button that starts the execution of this request.
+     */
+    private final JButton button;
+
+    /**
+     * Progress Bar that shows the progress of the calculation.
+     */
+    private final JProgressBar progressBar;
+
+
+    /**
+     * Create a new ExactCubesRequest request and put it in the
+     * Request queue.
+     * @param outputArea Output JTextArea to redirect output to.
+     * @param bar ProgressBar to show calculation progress on.
+     * @param button Button that starts the calculation.
+     * @param lowestBound Where to start looking for exact cubes.
+     * @param highestBound Where to stop looking for exact cubes.
+     */
     public ExactCubesRequest(JTextArea outputArea, JProgressBar bar, JButton button, String lowestBound, String highestBound) {
+        this.outputArea = outputArea;
+        this.progressBar = bar;
+        this.button = button;
+
         try {
             this.lowestBound = Integer.parseInt(lowestBound);
             this.highestBound = Integer.parseInt(highestBound);
@@ -43,10 +76,6 @@ public class ExactCubesRequest implements Request {
             updateOutputArea(outputArea, "How about you insert something that works?", 1);
             return;
         }
-
-        this.outputArea = outputArea;
-        this.progressBar = bar;
-        this.button = button;
 
         RequestManager.queueRequest(this);
     }

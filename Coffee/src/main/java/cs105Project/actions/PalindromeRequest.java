@@ -16,14 +16,33 @@ import javax.swing.*;
  * for this option.
  */
 public class PalindromeRequest implements Request {
-    // What is taken as input
+    /**
+     * String to test whether it's a palindrome.
+     */
     private final String stringToTest;
+    /**
+     * Should the check be case sensitive?
+     */
     private final boolean isCaseSensitive;
 
-    // Output UI References & Variables
+    /**
+     * Output area for the program's output.
+     */
     private final JTextArea outputArea;
+
+    /**
+     * Button that starts the execution of this request.
+     */
     private final JButton button;
 
+    /**
+     * Create a PalindromeRequest object and add it to
+     * the Request queue.
+     * @param outputField JTextArea to redirect output to.
+     * @param button Button that initiates requests.
+     * @param inputString What the user input.
+     * @param isCaseSensitive Whether the check should be case sensitive.
+     */
     public PalindromeRequest(JTextArea outputField, JButton button, String inputString, boolean isCaseSensitive) {
         this.stringToTest = inputString;
         this.outputArea = outputField;

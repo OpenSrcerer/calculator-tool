@@ -20,14 +20,37 @@ import java.util.Random;
  */
 public class GuessingRequest implements Request {
 
+    /**
+     * Number that the user will guess.
+     */
     private static int numberToGuess = new Random().nextInt(66);
+    /**
+     * Number the times user has already guessed.
+     */
     private static int guesses = 0;
 
+    /**
+     * Variable to store userInput in;
+     */
     private int userInput;
 
+    /**
+     * Output area for the program's output.
+     */
     private final JTextArea outputArea;
+
+    /**
+     * Button that starts the execution of this request.
+     */
     private final JButton button;
 
+    /**
+     * Create a new GuessingRequest object and put it in the
+     * Request queue.
+     * @param outputArea JTextArea to redirect output to.
+     * @param button Button that created this request.
+     * @param userInput User's input.
+     */
     public GuessingRequest(JTextArea outputArea, JButton button, String userInput) {
         this.outputArea = outputArea;
         this.button = button;

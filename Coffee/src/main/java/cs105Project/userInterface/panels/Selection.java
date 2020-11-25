@@ -13,8 +13,15 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
+/**
+ * Manages the main selection menu.
+ */
 public final class Selection {
 
+    /**
+     * Set specific components to a target ContentPane.
+     * @param pane Target ContentPane.
+     */
     public static void setComponents(final Container pane) {
         final JPanel imagePanel = getJPanel();
         final JPanel actionPanel = getJPanel(new GridLayout(3,3));

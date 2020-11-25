@@ -23,9 +23,14 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public final class RequestManager {
 
-    // Initialization of the thread-managing executor & queue.
-    private static final int nThreads = 1;
-    private static final ExecutorService executor = Executors.newFixedThreadPool(nThreads);
+    /**
+     * ExecutorService to manage one request at a time.
+     */
+    private static final ExecutorService executor = Executors.newSingleThreadExecutor();
+
+    /**
+     * Queue accessible by the ExecutorService's single thread that manages requests.
+     */
     private static final LinkedBlockingQueue<Request> requests = new LinkedBlockingQueue<>(1);
 
     static {
@@ -49,9 +54,7 @@ public final class RequestManager {
         };
 
         // submits the request to the executor
-        for (int thread = 1; thread <= nThreads; ++thread) {
-            executor.submit(runRequests);
-        }
+        executor.submit(runRequests);
     }
 
     /**

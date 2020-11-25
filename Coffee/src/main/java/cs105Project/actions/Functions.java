@@ -16,6 +16,10 @@ import java.util.stream.Collectors;
  * calculations and arranged for easy access.
  */
 public final class Functions {
+
+    /**
+     * @return Array of random longs valued at 0-100;
+     */
     public static long[] getRandomValues() {
         Random random = new Random();
         long[] array = new long[6];
@@ -27,6 +31,11 @@ public final class Functions {
         return array;
     }
 
+    /**
+     * @param population The population of integers.
+     * @param mean Mean of this population.
+     * @return Statistical variance of the population.
+     */
     public static double getVariance(Collection<Integer> population, double mean) {
         double sqrDiff = 0;
 
@@ -37,6 +46,11 @@ public final class Functions {
         return sqrDiff / population.size();
     }
 
+    /**
+     * @param s String to check
+     * @param index Index to check
+     * @return Whether the string s is a palindrome or not.
+     */
     public static boolean isPalindrome(String s, int index) {
         if (index == (s.length() / 2))
             return true;
@@ -47,6 +61,11 @@ public final class Functions {
         return isPalindrome(s, index + 1);
     }
 
+    /**
+     * @param list A List of Integers.
+     * @param multiplier What to multiply this list with.
+     * @return The same list, with every element multiplied by given multiplier.
+     */
     public static List<Integer> multiplyListBy(List<Integer> list, int multiplier) {
         return list.stream().map(e -> e * multiplier).collect(Collectors.toList());
     }

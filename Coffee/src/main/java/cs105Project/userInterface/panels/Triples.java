@@ -24,6 +24,10 @@ import static cs105Project.userInterface.PanelComponents.*;
  */
 public final class Triples {
 
+    /**
+     * Set specific components to a target ContentPane.
+     * @param pane Target ContentPane.
+     */
     public static void setComponents(final Container pane) {
         // Init all the JPanels necessary for this program.
         final JPanel titleHolder = getJPanel(BoxLayout.PAGE_AXIS);
@@ -31,6 +35,7 @@ public final class Triples {
         final JPanel buttonHolder = getJPanel(new CardLayout());
         final JPanel interactionHolder = getJPanel(new BorderLayout());
 
+        // Start preparing components
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
 
         titleHolder.add(getLabel("Pythagorean Triples Calculator", titleFont));

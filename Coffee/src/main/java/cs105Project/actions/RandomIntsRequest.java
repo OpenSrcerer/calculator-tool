@@ -21,10 +21,22 @@ import java.util.stream.LongStream;
  * one for sample.)
  */
 public class RandomIntsRequest implements Request {
-    // Output UI References & Variables
+    /**
+     * Output area for the program's output.
+     */
     private final JTextArea outputArea;
+
+    /**
+     * Button that starts the execution of this request.
+     */
     private final JButton button;
 
+    /**
+     * Create a RandomIntsRequest object and add it
+     * to the Request queue.
+     * @param outputArea JTextArea to redirect output to.
+     * @param button Button that initiated this request.
+     */
     public RandomIntsRequest(JTextArea outputArea, JButton button) {
         this.outputArea = outputArea;
         this.button = button;

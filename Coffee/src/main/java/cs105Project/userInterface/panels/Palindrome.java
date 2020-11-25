@@ -19,6 +19,11 @@ import static cs105Project.userInterface.PanelComponents.*;
  * for this option.
  */
 public final class Palindrome {
+
+    /**
+     * Set specific components to a target ContentPane.
+     * @param pane Target ContentPane.
+     */
     public static void setComponents(final Container pane) {
         // Init all the JPanels necessary for this program.
         final JPanel titleHolder = getJPanel(BoxLayout.PAGE_AXIS);

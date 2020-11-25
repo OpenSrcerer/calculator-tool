@@ -11,8 +11,15 @@ import java.awt.*;
 
 import static cs105Project.userInterface.PanelComponents.*;
 
+/**
+ * Manages the Credits UI Menu.
+ */
 public class Credits {
 
+    /**
+     * Set specific components to a target ContentPane.
+     * @param pane Target ContentPane.
+     */
     public static void setComponents(final Container pane) {
         final JPanel infoPanel = getJPanel(BoxLayout.PAGE_AXIS);
         final JPanel imagePanel = getJPanel();

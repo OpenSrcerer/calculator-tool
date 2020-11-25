@@ -11,16 +11,29 @@ package cs105Project.actions.exactCubes;
  * more clear and concise.
  */
 public class CandidateRoot {
+    /**
+     * Singleton instance for CandidateRoot
+     */
+
     private static final CandidateRoot instance = new CandidateRoot();
-    // Precision of when we consider a root an integer.
+    /**
+     * Precision of when we consider a root an integer.
+     */
+
     private static final double ROOT_PRECISION = 1.0E-10;
-    // Index of the nth root (in this case 3)
+    /**
+     * Index of the nth root (in this case 3)
+     */
     private static final double ROOT_INDEX = 3D;
 
-    // Value where the precise, raw original root
-    // from Math.pow() is stored.
+    /**
+     * Value where the precise, raw original root
+     * from Math.pow() is stored.
+     */
     double preciseRoot;
-    // Root after it's been rounded.
+    /**
+     * Root after it's been rounded.
+     */
     int roundedRoot;
 
 

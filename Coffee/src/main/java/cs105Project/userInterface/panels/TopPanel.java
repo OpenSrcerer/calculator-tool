@@ -12,10 +12,22 @@ import java.awt.*;
 import static cs105Project.userInterface.PanelComponents.discordGrayer;
 import static cs105Project.userInterface.PanelComponents.getButton;
 
+/**
+ * Convenience class for the top bar in the UI
+ * with the Help and Credits buttons.
+ */
 public final class TopPanel {
 
+    /**
+     * Set top panel with its respective components
+     * once and for all.
+     */
     private static final JPanel topPanel = setTopPanel();
 
+    /**
+     * Set the top panel.
+     * @return A JPanel with the top panel elements.
+     */
     private static JPanel setTopPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         panel.setBackground(discordGrayer);
@@ -24,6 +36,9 @@ public final class TopPanel {
         return panel;
     }
 
+    /**
+     * @return topPanel JPanel.
+     */
     protected static JPanel getTopPanel() {
         return topPanel;
     }
