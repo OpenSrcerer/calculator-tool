@@ -60,7 +60,7 @@ public class GuessingRequest implements Request {
             if (this.userInput < 0 || this.userInput > 65)
                 throw new NumberFormatException();
         } catch (NumberFormatException ex) {
-            updateOutputArea(outputArea, outputArea.getText() + "How about you insert something that works?\n", outputArea.getRows() + 1);
+            updateOutputArea(outputArea, outputArea.getText() + "Please guess from 0-65!\n", outputArea.getRows() + 1);
             return;
         }
 

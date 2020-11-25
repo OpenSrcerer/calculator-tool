@@ -73,7 +73,7 @@ public class ExactCubesRequest implements Request {
             if (this.highestBound <= 0 || this.highestBound == Integer.MAX_VALUE || this.lowestBound <= 0 || this.lowestBound >= this.highestBound)
                 throw new NumberFormatException();
         } catch (NumberFormatException ex) {
-            updateOutputArea(outputArea, "How about you insert something that works?", 1);
+            updateOutputArea(outputArea, "Please insert some proper input. Integers!", 1);
             return;
         }
 
