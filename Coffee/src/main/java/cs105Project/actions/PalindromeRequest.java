@@ -48,6 +48,7 @@ public class PalindromeRequest implements Request {
      * @param button Button that initiates requests.
      * @param inputString What the user input.
      * @param isCaseSensitive Whether the check should be case sensitive.
+     * @param isSpaceSensitive Whether the check should be space sensitive.
      */
     public PalindromeRequest(JTextArea outputField, JButton button, String inputString, boolean isCaseSensitive, boolean isSpaceSensitive) {
         this.stringToTest = inputString;
