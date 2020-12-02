@@ -61,40 +61,60 @@ public class TriplesRequest implements Request {
         toggleRunButton(button);
         updateOutputArea(outputArea, " ", 1);
 
+        // primitiveRatios is static, clear
+        // what's left over from the previous run
         primitiveRatios.clear();
 
         StringBuilder primitiveBuilder = new StringBuilder(), scaledBuilder = new StringBuilder();
         primitiveBuilder.append("------- Primitive Ratios -------\n");
         scaledBuilder.append("\n------- Scaled Ratios -------\n");
 
+        // a, b = legs of the triangle
+        // c = hypotenuse of the triangle
         int a, b, c;
-        int m = 2;
 
-        while (m < 100) {
+        // q1 & q2 = placeholder integers
+        // that iterate from 1-100 to create
+        // triples using the early greek formula
+        int q1 = 2;
 
-            int n = 1;
-            while (n < m) {
+        while (q1 < 100) {
 
-                a = (m * m) - (n * n);
-                b = 2 * m * n;
-                c = (m * m) + (n * n);
+            int q2 = 1;
+            while (q2 < q1) {
 
+                // Early greek formula for
+                // calculating pythagorean triples
+                a = (q1 * q1) - (q2 * q2);
+                b = 2 * q1 * q2;
+                c = (q1 * q1) + (q2 * q2);
+
+                // Quit calculating if the
+                // hypotenuse gets larger than 100
                 if (c > 100)
                     break;
 
+                // If the ratio conforms to the pythagorean
+                // theorem
                 if ((a * a) + (b * b) == (c * c)) {
+
+                    // Create an immutable list of the ratio and sort it naturally
                     List<Integer> ratio = Arrays.asList(a, b, c);
                     ratio.sort(Comparator.naturalOrder());
 
+                    // if ratio is not scaled, add it to the primitive
+                    // ratios
                     if (!isRatioScaled(ratio)) {
                         primitiveRatios.add(ratio);
                     }
                 }
-                ++n;
+                ++q2;
             }
-            ++m;
+            ++q1;
         }
 
+        // calculate all scaled versions of the ratio
+        // with a hypotenuse less than 100
         for (List<Integer> ratio : primitiveRatios) {
             int index = 2;
             while (ratio.get(2) * index <= 100) {
