@@ -60,7 +60,7 @@ public class GuessingRequest implements Request {
             if (this.userInput < 0 || this.userInput > 65)
                 throw new NumberFormatException();
         } catch (NumberFormatException ex) {
-            updateOutputArea(outputArea, outputArea.getText() + "Please guess from 0-65!\n", outputArea.getRows() + 1);
+            updateOutputArea(outputArea, outputArea.getText() + "Error in input: Please guess from 0-65!\n", outputArea.getRows() + 1);
             return;
         }
 
@@ -86,16 +86,16 @@ public class GuessingRequest implements Request {
         } else if (userInput > numberToGuess) {
             updateOutputArea(outputArea,
                     outputArea.getText() + "----------------------------------------------------------------\n"
-                    + "You need to guess lower!\n"
+                    + "You guessed: " + userInput + ".\nYou need to guess lower!\n"
                     + "Current guesses: " + guesses + ".\n",
-                    outputArea.getRows() + 3
+                    outputArea.getRows() + 4
             );
         } else {
             updateOutputArea(outputArea,
                     outputArea.getText() + "----------------------------------------------------------------\n"
-                    + "You need to guess higher!\n"
+                    + "You guessed: " + userInput + ".\nYou need to guess higher!\n"
                     + "Current guesses: " + guesses + ".\n",
-                    outputArea.getRows() + 3
+                    outputArea.getRows() + 4
             );
         }
 

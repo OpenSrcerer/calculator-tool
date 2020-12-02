@@ -50,10 +50,10 @@ public class FactorialRequest implements Request {
         for (int index = 0; index < 5; ++index) {
             try {
                 numbers[index] = Integer.parseInt(fields[index].getText());
-                if (numbers[index] <= 0 || numbers[index] >= 15)
+                if (numbers[index] < 0 || numbers[index] > 15)
                     throw new NumberFormatException();
             } catch (NumberFormatException ex) {
-                updateOutputArea(outputArea, "Insert an integer from 0-15\n", 1);
+                updateOutputArea(outputArea, outputArea.getText() + "Error in input: Insert an integer from 0-15.\n", outputArea.getRows() + 1);
                 return;
             }
         }
