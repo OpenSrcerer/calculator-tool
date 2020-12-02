@@ -66,8 +66,9 @@ public class FactorialRequest implements Request {
         toggleRunButton(button);
 
         double average = IntStream.of(numbers).sum() / 5d;
-        int closest = getClosestToAverage(numbers, average);
-        long factorial = getFactorial(closest);
+        // Using the functions in Functions.java!
+        int closest = Functions.getClosestToAverage(numbers, average);
+        long factorial = Functions.getFactorial(closest);
 
         updateOutputArea(outputArea,
                 outputArea.getText() + "----------------------------------------------------------------\n"
@@ -79,38 +80,5 @@ public class FactorialRequest implements Request {
                 outputArea.getRows() + 5
         );
         toggleRunButton(button);
-    }
-
-    /**
-     * @param ints Array of integers to test
-     * @param average Calculated average of these numbers
-     * @return Number in the array closest to the average
-     */
-    private static int getClosestToAverage(int[] ints, double average) {
-        int closest = 0;
-        double delta = Double.MAX_VALUE;
-
-        for (int i : ints) {
-            if (Math.abs(average - i) < delta) {
-                closest = i;
-                delta = Math.abs(average - i);
-            }
-        }
-
-        return closest;
-    }
-
-    /**
-     * @param integer Given integer
-     * @return Factorial of given integer
-     */
-    public static long getFactorial(int integer) {
-        long returnValue = integer;
-
-        for (long index = integer - 1; index >= 1; --index) {
-            returnValue = returnValue * index;
-        }
-
-        return returnValue;
     }
 }

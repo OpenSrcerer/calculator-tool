@@ -73,7 +73,7 @@ public class ExactCubesRequest implements Request {
             if (this.highestBound <= 0 || this.highestBound == Integer.MAX_VALUE || this.lowestBound <= 0 || this.lowestBound >= this.highestBound)
                 throw new NumberFormatException();
         } catch (NumberFormatException ex) {
-            updateOutputArea(outputArea, "Please insert some proper input. Integers!", 1);
+            updateOutputArea(outputArea, "Please insert some proper input. \nIntegers from 1 to 2,147,483,646 would be good!", 1);
             return;
         }
 
@@ -95,17 +95,22 @@ public class ExactCubesRequest implements Request {
         // Estimate for the progress bar
         double expectedCubes = Math.pow((highestBound - lowestBound), 1/3d);
 
+        // search from number 1 to number 2
         for (int numberToTest = lowestBound; numberToTest <= highestBound; ++numberToTest) {
+            // set the candidate in the CandidateRoot object
+            // to the current number in the loop
             candidate.setCandidate(numberToTest);
+
 
             if (candidate.isExactRoot()) {
                 exactCubes.add(numberToTest);
                 updateProgressBar(progressBar, (int) ((exactCubes.size() / expectedCubes) * 100));
                 correspondingRoots.add(candidate.getRoundedRoot());
-                sum = sum + numberToTest;
+                sum += numberToTest;
             }
         }
 
+        // Calculate statistical measures
         mean = sum / exactCubes.size();
         variance = Functions.getVariance(exactCubes, mean);
         stdDev = Math.sqrt(variance);

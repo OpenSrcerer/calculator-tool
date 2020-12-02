@@ -14,7 +14,7 @@ import static cs105Project.userInterface.PanelComponents.*;
 /**
  * Manages the Credits UI Menu.
  */
-public class Credits {
+public final class Credits {
 
     /**
      * Set specific components to a target ContentPane.

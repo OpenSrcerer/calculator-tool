@@ -60,6 +60,7 @@ public class PalindromeRequest implements Request {
         if (!isCaseSensitive)
             tempString = tempString.toLowerCase();
 
+        // using the isPalindrome method from the Functions class!
         if (Functions.isPalindrome(tempString, 0)) {
             updateOutputArea(outputArea, outputArea.getText() + stringToTest + " IS a palindrome." + "\n", outputArea.getRows() + 1);
         } else {

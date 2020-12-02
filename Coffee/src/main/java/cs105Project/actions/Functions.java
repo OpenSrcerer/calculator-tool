@@ -69,4 +69,37 @@ public final class Functions {
     public static List<Integer> multiplyListBy(List<Integer> list, int multiplier) {
         return list.stream().map(e -> e * multiplier).collect(Collectors.toList());
     }
+
+    /**
+     * @param ints Array of integers to test
+     * @param average Calculated average of these numbers
+     * @return Number in the array closest to the average
+     */
+    public static int getClosestToAverage(int[] ints, double average) {
+        int closest = 0;
+        double delta = Double.MAX_VALUE;
+
+        for (int i : ints) {
+            if (Math.abs(average - i) < delta) {
+                closest = i;
+                delta = Math.abs(average - i);
+            }
+        }
+
+        return closest;
+    }
+
+    /**
+     * @param integer Given integer
+     * @return Factorial of given integer
+     */
+    public static long getFactorial(int integer) {
+        long returnValue = integer;
+
+        for (long index = integer - 1; index >= 1; --index) {
+            returnValue = returnValue * index;
+        }
+
+        return returnValue;
+    }
 }

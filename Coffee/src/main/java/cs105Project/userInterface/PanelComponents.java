@@ -58,6 +58,7 @@ public final class PanelComponents {
      */
     public static JButton getButton(String buttonName, ButtonType type) {
         JButton button = new JButton();
+        button.setHorizontalAlignment(SwingConstants.CENTER);
         setButtonPalette(buttonName, button);
         setMouseListener(button);
         button.addActionListener(getListener(type));
@@ -81,6 +82,7 @@ public final class PanelComponents {
 
     /**
      * Changes a given button's theme to match the discord theme.
+     * Takes advantage of Swing's HTML support.
      * @param buttonName String to change the button name to.
      * @param button Button to change.
      */
