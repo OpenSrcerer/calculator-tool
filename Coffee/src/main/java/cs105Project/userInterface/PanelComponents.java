@@ -473,7 +473,7 @@ public final class PanelComponents {
         } else if (type == ButtonType.GUESSING) {
             return e -> new GuessingRequest((JTextArea) args[0], button, ((JTextField) args[1]).getText());
         } else if (type == ButtonType.PALINDROME) {
-            return e -> new PalindromeRequest((JTextArea) args[0], button, ((JTextField) args[1]).getText(), ((JCheckBox) args[2]).isSelected());
+            return e -> new PalindromeRequest((JTextArea) args[0], button, ((JTextField) args[1]).getText(), ((JCheckBox) args[2]).isSelected(), ((JCheckBox) args[3]).isSelected());
         } else if (type == ButtonType.TRIPLES) {
             return e -> new TriplesRequest((JTextArea) args[0], button);
         }

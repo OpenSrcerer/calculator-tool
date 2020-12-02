@@ -36,7 +36,8 @@ public final class Palindrome {
 
         JTextArea outputArea = PanelComponents.getTextArea(15,30);
         JTextField inputField = PanelComponents.getTextField("Insert String", 30);
-        JCheckBox checkBox = PanelComponents.getCheckBox("Case Sensitive", false);
+        JCheckBox checkBoxCase = PanelComponents.getCheckBox("Case Sensitive", false);
+        JCheckBox checkBoxSpacing = PanelComponents.getCheckBox("Space Sensitive", false);
 
         titleHolder.add(getLabel("Palindrome Checker", titleFont));
         titleHolder.add(getLabel("This tool will check whether the string", descriptionFont));
@@ -44,14 +45,15 @@ public final class Palindrome {
         titleHolder.add(Box.createVerticalStrut(5));
         titleHolder.add(getSeparator());
 
-        checkBoxHolder.add(checkBox);
+        checkBoxHolder.add(checkBoxCase);
+        checkBoxHolder.add(checkBoxSpacing);
 
         inputBox.add(getLabel("String to check:", descriptionFont));
         inputBox.add(inputField);
 
         inputHolder.add(inputBox);
 
-        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.PALINDROME, outputArea, inputField, checkBox));
+        buttonLayout.add(PanelComponents.getButton("Run", ButtonType.PALINDROME, outputArea, inputField, checkBoxCase, checkBoxSpacing));
         buttonLayout.add(PanelComponents.getButton("Back", ButtonType.BACK));
 
         buttonHolder.add(checkBoxHolder);

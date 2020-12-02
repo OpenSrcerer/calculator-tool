@@ -20,10 +20,16 @@ public class PalindromeRequest implements Request {
      * String to test whether it's a palindrome.
      */
     private final String stringToTest;
+
     /**
      * Should the check be case sensitive?
      */
     private final boolean isCaseSensitive;
+
+    /**
+     * Should the check be space sensitive?
+     */
+    private final boolean isSpaceSensitive;
 
     /**
      * Output area for the program's output.
@@ -43,11 +49,12 @@ public class PalindromeRequest implements Request {
      * @param inputString What the user input.
      * @param isCaseSensitive Whether the check should be case sensitive.
      */
-    public PalindromeRequest(JTextArea outputField, JButton button, String inputString, boolean isCaseSensitive) {
+    public PalindromeRequest(JTextArea outputField, JButton button, String inputString, boolean isCaseSensitive, boolean isSpaceSensitive) {
         this.stringToTest = inputString;
         this.outputArea = outputField;
         this.button = button;
         this.isCaseSensitive = isCaseSensitive;
+        this.isSpaceSensitive = isSpaceSensitive;
 
         RequestManager.queueRequest(this);
     }
@@ -56,6 +63,9 @@ public class PalindromeRequest implements Request {
     public void run() {
         toggleRunButton(button);
         String tempString = stringToTest;
+
+        if (!isSpaceSensitive)
+            tempString = tempString.replace(" ", "");
 
         if (!isCaseSensitive)
             tempString = tempString.toLowerCase();
